@@ -7,12 +7,9 @@ $(document).ready(function(){
 
     function fadeIn(picIndex){
         highlightThumb();
-        theGSAPInstance = gsap.set($(picArray[picIndex]),{rotationY:"30deg",scale:.7});
-        theGSAPInstance = gsap.set($(picArray[picIndex]).children(".img-hldr"),{backgroundSize:"100% 100%",backgroundPosition:"center center"});
-        theGSAPInstance = gsap.set($(picArray[picIndex]).children(".image-text"),{opacity:0});
+        theGSAPInstance = gsap.set($(picArray[picIndex]).children(".img-hldr"),{backgroundSize:"120% 120%",backgroundPosition:"center center"});
 
         theGSAPInstance = gsap.to(picArray[picIndex],.95,{opacity:1});
-        theGSAPInstance = gsap.to($(picArray[picIndex]),3,{rotationY:"0deg",scale:1});
         theGSAPInstance = gsap.to($(picArray[picIndex]).children(".img-hldr"),3,{backgroundSize:"100% 100%",onComplete:function(){
             showBlurb(picIndex);
         }});
@@ -20,8 +17,15 @@ $(document).ready(function(){
 
     /*-------------------SUPPORT FUNCTIONS-----------------*/
         function showBlurb(blurbIndex){
-            theGSAPInstance = gsap.to($(picArray[blurbIndex]).children(".img-hldr").children(".image-text"),1.5,{opacity:1,delay:2});
-            theGSAPInstance = gsap.to(picArray[blurbIndex],.95,{opacity:0,delay:6.5,onComplete:function(){
+            theGSAPInstance = gsap.set($(picArray[blurbIndex]).find(".topspear")  ,  {scale:0,x:-100});
+            theGSAPInstance = gsap.set($(picArray[blurbIndex]).find(".bottomspear"), {scale:0,x:100});
+            theGSAPInstance = gsap.to($(picArray[blurbIndex]).find(".topspear"),  6, {scale:1,x:-200,delay:2});
+            theGSAPInstance = gsap.to($(picArray[blurbIndex]).find(".bottomspear"),6,{scale:1,x:200,delay:2});
+
+            // theGSAPInstance = gsap.set($(picArray[blurbIndex]).find(".image-text"),{rotationY:"90deg"});
+            theGSAPInstance = gsap.to($(picArray[blurbIndex]).find(".image-text"),6.5,{rotationY:"0deg",opacity:1,ease:Back.easeOut,delay:2});
+            theGSAPInstance = gsap.to(picArray[blurbIndex],.95,{opacity:0,delay:12.5,onComplete:function(){
+                theGSAPInstance = gsap.set($(picArray[blurbIndex]).find(".image-text"),{opacity:0});
                 currPic = blurbIndex === 0 ? picArray.length-1 : blurbIndex - 1 ;
                 fadeIn(currPic);
             }});
