@@ -4,18 +4,34 @@ body, html {
   background-color: black;
 }
 
+@font-face {
+  font-family: Harting_plain;
+  src: url(Harting_plain.ttf);
+}
+
 .main-title{
     width: 100%;
     display: flex;
     justify-content: center;
     color: white;
-    font-size: 40pt;
+}
+.main-title-frame{
+    font-family: Harting_plain;
+    font-size: 26pt;
     padding:20px;
+    width: 644px;
+    border: solid white 3pt;
+    background: black;
+    -webkit-box-shadow: 0px 5px 19px -1px #000000;
+    box-shadow: 0px 5px 19px -1px #000000;
+    z-index: 1000;
 }
 .main-menu{
     width: 100%;
     display: flex;
     justify-content: center;
+    font-size: 17pt;
+    margin-top:20px;
 }
 .menu-item{
     margin: 0 10px;
@@ -30,51 +46,100 @@ body, html {
 .main-frame{
     width:690px;
     height:700px;
-    border: white dashed 2px;
+    /* border: white dashed 2px; */
     position: relative;
     overflow: hidden;
+    perspective: 1000px;
 }
 .image{
-    transform:scale(1.2);
-    background-size:cover;
     background-position: center center;
+    background-size:120% 120%;
     position: absolute;
     background-color: black;
     color: white;
-    font-family:"Georgia";
+    font-family:"Times";
     font-size: 16pt;
     top: 0;
     left: 0;
     width:100%;
     height:100%;
     opacity:0;
+    display:flex;
+    justify-content: center;
 }
 .image-text{
-    background-color:rgba(0,0,0,0.8);opacity:0;height:100%;padding:20px;
+    opacity:0;
+    /* padding:30px; */
     text-align: justify;
-}
-.magazine{
-    width: 99.9%;
+    position: absolute;
+    width:100%;
+    height:auto;
+    top:50%;
+    left:0;
+    font-style: italic;
     display: flex;
     justify-content: center;
-    flex-direction: row-reverse;
-    margin-top: 10px;
+}
+.read-tests,.view-cover{
+    position: absolute;
+    bottom: 1px;
+    right:-11px;
+    cursor: pointer;
+    width:170px;
+    height:170px;
+    background:url('read-tests.png');
+    background-size: contain;
+    transition: transform .2s;
+    display: none;
+}
+.view-cover{
+    background:url('view-cover.png');
+}
+.read-tests:hover,.view-cover:hover{
+    /* transform: scale(1.1);
+    transition: transform .2s; */
+}
+.cartridge{
+    width:100%;
+    height:86px;
+    position: absolute;
+    bottom: 0px;
+}
+.inner-cartridge{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    position:absolute;
+    bottom:0px;
+    width: 654px;
+    height:86px;
+    overflow: hidden;
+    border: solid white 3pt;
+    padding: 15px;
+    -webkit-box-shadow: 0px -5px 19px -1px #000000;
+    box-shadow:         0px -5px 19px -1px #000000;
+}
+.magazine{
+    width:2000px;
+    /* display: flex; */
 }
 
 .round{
+    float:left;
     cursor: pointer;
     width:76px;
     height:86px;
     background-size:cover;
     background-position: center center;
-    -webkit-box-shadow: inset 0px 0px 0px 0px rgba(255,255,255,0.7);
-    box-shadow: inset 0px 0px 0px 0px rgba(255,255,255,0.7);
+    -webkit-box-shadow: inset 0px 0px 0px 0px white;
+    box-shadow: inset 0px 0px 0px 0px white;
     transition: box-shadow .25s;
-    margin-right: 5px;
+    margin-right: 15px;
+    display: inline-block;
 }
 .actv, .round:hover{
-    -webkit-box-shadow: inset 0px 0px 0px 10px rgba(255,255,255,0.7);
-    box-shadow: inset 0px 0px 0px 10px rgba(255,255,255,0.7);
+    -webkit-box-shadow: inset 0px 0px 0px 10px white;
+    box-shadow: inset 0px 0px 0px 10px white;
     transition: box-shadow .25s;
 }
 .round img{
