@@ -8,9 +8,11 @@ $(document).ready(function(){
 
     function fadeIn(picIndex){
         highlightThumb();
-        $(".bigBackText,.middleBackText,.smallBackText").fadeOut(1000);
-        $(".bigBackText,.middleBackText,.smallBackText").html( $(picArray[picIndex]).find(".the-actual-text").html() );
-        $(".bigBackText,.middleBackText,.smallBackText").fadeIn();
+        gsap.to($(".bigBackText,.middleBackText,.smallBackText"),1,{opacity:0,onComplete:function(){
+            $(".bigBackText,.middleBackText,.smallBackText").html( $(picArray[picIndex]).find(".the-actual-text").html() );
+            gsap.to($(".bigBackText,.middleBackText,.smallBackText"),2,{opacity:1});
+        }});
+
         theGSAPInstance = gsap.set($(picArray[picIndex]).children(".img-hldr"),{backgroundSize:"120% 120%",backgroundPosition:"center center"});
 
         theGSAPInstance = gsap.to(picArray[picIndex],.95,{opacity:1});
