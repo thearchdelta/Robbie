@@ -134,6 +134,7 @@ body, html {
     filter:blur(20px);
     background-size:cover;
     opacity: 0.5;
+    display:none;
 }
 .image-text{
     font-weight:lighter;
