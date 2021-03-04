@@ -135,7 +135,7 @@ body {
 }
 
 .main-frame img{
-    opacity:1;height:100%;
+    opacity:0;height:100%;
 }
 
 .image-text-hldr{
