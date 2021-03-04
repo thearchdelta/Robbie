@@ -1,9 +1,3 @@
-body {
-    display: grid;
-    height: 100vh;
-    grid-template-rows: auto 1fr auto;
-    background-color: black;
-}
 body, html {
   height: 100%;
   margin: 0;
@@ -11,33 +5,18 @@ body, html {
   overflow: hidden;
 }
 
-// etc
-
-header {
-  background: black;
-}
-
-main {
-  background: black;
-  position:relative;
-}
-
-footer {
-  background: black;
-  color: black;
-  padding: 5px;
-  text-align: center;
-}
-
-body {
-  font-family: system-ui, sans-serif;
-}
-
-/* END 1-LINE-LAYOUT-CODE */
-
 .body-about{
     background-image:url('images/cats0.png');
     background-size: cover ;
+}
+
+@font-face {
+  font-family: Harting_plain;
+  src: url(Harting_plain.ttf);
+}
+@font-face {
+  font-family: Antic;
+  src: url(AnticDidone-Regular.otf);
 }
 
 .main-title{
@@ -50,6 +29,7 @@ body {
 .main-title-frame,.main-title-frame-alt{
     text-align: center;
     font-family: 'Montserrat', sans-serif;
+    /* font-family: "Montserrat script=latin rev=2"; */
     font-weight: 100;
     font-style: normal;
     font-size: 46pt;
@@ -113,16 +93,13 @@ body {
     justify-content: center;
 }
 
-.main-frame,.main-frame-about{ /*--there are multiple 'main frames'--*/
-    position: absolute;
-    top:0;
-    left:50%;
-    transform: translateX(-50%);
-    width:auto;
-    height:100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity:0;
+.main-frame,.main-frame-about{
+    width:690px;
+    height:700px;
+    /* border: white dashed 2px; */
+    position: relative;
+    /* overflow: hidden; */
+    perspective: 1000px;
 }
 .main-frame-about{
     width:630px;
@@ -133,33 +110,65 @@ body {
     font-family: Antic;
     text-align: justify;
 }
-
-.main-frame img{
-    opacity:0;height:100%;
-}
-
-.image-text-hldr{
-    position:absolute;
-    top:0;
-    left:0;
+.image{
+    background-position: center center;
+    background-size:120% 120%;
+    position: absolute;
+    color: white;
+    /* font-family:"Times"; */
+    top: 0;
+    left: 0;
     width:100%;
     height:100%;
+    opacity:1;
+    display:flex;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
     display: grid;
     place-items: center;
- }
-
+}
 .image-text{
     font-weight:lighter;
-    font-size: 16pt;
+    font-size: 24pt;
     font-family: 'Montserrat', sans-serif;
-    opacity:1;
+    opacity:0;
     text-align: center;
-    width:90%;
+    width:70%;
     height:auto;
     /* font-style: italic; */
-    color: white;
+    display: flex;
+    justify-content: center;
+}
+.img-hldr{
+    opacity:0;
 }
 
+.image-text-text{
+    background-color:rgba(0,0,0,0.8);
+    padding:40px;
+    -webkit-box-shadow: 0px 19px 30px -14px #000000;
+    box-shadow: 0px 19px 30px -14px #000000;
+}
+.read-tests,.view-cover{
+    position: absolute;
+    bottom: 1px;
+    right:-11px;
+    cursor: pointer;
+    width:170px;
+    height:170px;
+    background:url('read-tests.png');
+    background-size: contain;
+    transition: transform .2s;
+    display: none;
+}
+.view-cover{
+    background:url('view-cover.png');
+}
+.read-tests:hover,.view-cover:hover{
+    /* transform: scale(1.1);
+    transition: transform .2s; */
+}
 .cartridge{
     width:100%;
     height:86px;
@@ -253,4 +262,31 @@ a {
 }
 a:hover {
     color:red;
+}
+
+body {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
+// etc
+
+header {
+  background: lightpink;
+  padding: 2rem;
+}
+
+main {
+  background: coral;
+}
+
+footer {
+  background: wheat;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  font-family: system-ui, sans-serif;
 }
