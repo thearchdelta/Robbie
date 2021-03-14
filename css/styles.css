@@ -297,6 +297,10 @@ a.actv,a:hover {
     border-bottom: dotted white 2px;
 }
 
+.main-menu a{
+    font-weight: bold;
+}
+
 .scrollbar-track{
     background: black !important;
 }
@@ -319,7 +323,7 @@ a.actv,a:hover {
 }
 
 .left-side{
-    padding:0px 20px 20px 20px;
+    padding:50px 20px 20px 20px;
     background:#000;
     color:white;
     position:absolute;
@@ -329,6 +333,7 @@ a.actv,a:hover {
     overflow-y:scroll;
     font-family:'Montserrat';
     font-size:21.3333px;
+    line-height: 1.5;
 }
 
 /* width */
