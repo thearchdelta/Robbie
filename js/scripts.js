@@ -57,7 +57,7 @@ $(document).ready(function(){
 /....................................*/
     let url = $(location).attr('href');
     // if( url.indexOf("index.html") > -1 ) fadeIn(currPic);
-
+console.log(":No fadein");
     if( url.indexOf("writings.html") > -1 ){
         let snippetArray = gsap.utils.toArray(".snippet");
         snippetArray.forEach((snippet)=>{
