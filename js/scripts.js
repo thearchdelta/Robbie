@@ -4,7 +4,6 @@ $(document).ready(function(){
     let currPic = picArray.length-1;
 
     function fadeIn(picIndex){
-        console.log("FadeIn begins");
     //if it's a text div
         if($(picArray[picIndex]).find(".image-text").length !== 0){
             gsap.set($(picArray[picIndex]).find(".image-text"),{scale:1.2});
