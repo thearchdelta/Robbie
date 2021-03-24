@@ -294,7 +294,7 @@ a {
 }
 a.actv,a:hover {
 
-    border-bottom: dotted orange 2px;
+    border-bottom: dotted red 2px;
 }
 
 .main-menu a{
