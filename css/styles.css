@@ -136,6 +136,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     opacity:0;
+    opacity:1;
+
 }
 .main-frame-about{
     width:630px;
@@ -239,7 +241,6 @@ font-family: 'Montserrat', sans-serif;
  font-family: 'Montserrat', sans-serif;
 }
 .main-frame img{
-    visibility: hidden;
     height:100%;
 }
 
