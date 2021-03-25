@@ -74,6 +74,16 @@ body {
     margin-bottom: 25px;
     z-index: 1000;
 }
+@media only screen and (max-width: 1120px) {
+  .main-title-frame {
+      font-size: 36pt;
+  }
+}
+@media only screen and (max-width: 880px) {
+  .main-title-frame {
+      font-size: 26pt;
+  }
+}
 
 .spear{
     position: absolute;
@@ -249,10 +259,8 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .image-text-hldr{
-    /* position:absolute;
-    top:0;
-    left:0; */
-    width:700px;
+    padding:40px;
+    max-width:700px;
     height:100%;
     display: grid;
     place-items: center;
@@ -273,6 +281,18 @@ font-family: 'Montserrat', sans-serif;
     display: block;
     text-align: center;
 }
+
+@media only screen and (max-width: 1120px) {
+  .image-text-wcs {
+      font-size: 26pt;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .image-text-wcs {
+      font-size: 30pt;
+  }
+}
+
 .image-text-wrtgs{
     font-style: normal;
 }
