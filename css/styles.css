@@ -32,7 +32,7 @@ main.main-about {
 }
 
 footer {
-  background: black;
+  background: red;
   color: black;
   padding: 5px;
   text-align: center;
@@ -129,14 +129,17 @@ body {
 .main-frame{ /*--there are multiple 'main frames'--*/
     position: absolute;
     top:0;
-    left:50%;
-    transform: translateX(-50%);
-    width:auto;
+    left:0;
+    display: grid;
+    place-items: center;
+    /* transform: translateX(-50%); */
+    width:100%;
     height:100%;
     background-position: center;
     background-repeat: no-repeat;
+    /* background-size: 700px auto; */
     opacity:0;
-    opacity:1;
+    /* opacity:1; */
 
 }
 .main-frame-about{
@@ -241,14 +244,15 @@ font-family: 'Montserrat', sans-serif;
  font-family: 'Montserrat', sans-serif;
 }
 .main-frame img{
+    /* opacity: 0; */
     height:100%;
 }
 
 .image-text-hldr{
-    position:absolute;
+    /* position:absolute;
     top:0;
-    left:0;
-    width:100%;
+    left:0; */
+    width:700px;
     height:100%;
     display: grid;
     place-items: center;
