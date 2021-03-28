@@ -372,13 +372,18 @@ a.actv,a:hover {
 .theModal{
     width:100vw;
     height:100vh;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 0.55);
     position: fixed;
     z-index: 1000;
     display: none;
 }
 .theModalMenu{
+    background: rgba(0, 0, 0, 0.95);
     padding:30px;
+    width: 33vw;
+    height: 100vh;
+    -webkit-box-shadow: 5px 4px 29px 5px #000000;
+    box-shadow: 5px 4px 29px 5px #000000;
 }
 .theModalMenu a{
     display: block;
@@ -401,6 +406,14 @@ a.actv,a:hover {
     }
     .main-menu{
         display:none;
+    }
+}
+@media only screen and (max-width: 980px) {
+    .main-title-frame {
+        font-size: 31pt;
+    }
+    .image-text-wcs {
+        font-size: 31pt;
     }
 }
 @media only screen and (max-width: 875px) {
