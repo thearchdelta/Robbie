@@ -87,8 +87,10 @@ $(document).ready(function(){
     /*-------------------MENU CONTROL-----------------*/
     $(".burgerMenu").click(()=>{
         $(".theModal").fadeIn();
+        gsap.to(".theModalMenu",.25,{x:0});
     });
     $(".theModal").click(()=>{
+        gsap.to(".theModalMenu",.5,{x:"-100%"});
         $(".theModal").hide();
     });
     /*--------------------END MENU CONTROL-----------------*/

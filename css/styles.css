@@ -77,8 +77,10 @@ body {
 
 .burgerMenu{
     display: none;
-    border:solid white 5px;
+    border:solid white 2px;
     cursor: pointer;
+    border-radius:2px;
+    transform: translateX(-20px);
 }
 
 .spear{
@@ -372,22 +374,24 @@ a.actv,a:hover {
 .theModal{
     width:100vw;
     height:100vh;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.75);
     position: fixed;
     z-index: 1000;
     display: none;
 }
 .theModalMenu{
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 0.75);
     padding:30px;
-    width: 33vw;
+    width: 40vw;
     height: 100vh;
     -webkit-box-shadow: 5px 4px 29px 5px #000000;
     box-shadow: 5px 4px 29px 5px #000000;
+    transform: translateX(-100%);
 }
 .theModalMenu a{
     display: block;
     font-size: 26pt;
+    margin: 20px 5px;
 }
 
 
