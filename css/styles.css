@@ -312,6 +312,7 @@ a.actv,a:hover {
 }
 .scroll-content{
     width:700px;
+    padding: 0 20px;
     margin:auto;
 }
 
@@ -393,7 +394,7 @@ a.actv,a:hover {
     .main-title-frame {
         font-size: 36pt;
     }
-    .image-text-wcs {
+    .image-text-wcs, .image-text-wrtgs {
         font-size: 36pt;
     }
     .burgerMenu{
@@ -407,7 +408,7 @@ a.actv,a:hover {
     .main-title-frame {
         font-size: 31pt;
     }
-    .image-text-wcs {
+    .image-text-wcs, .image-text-wrtgs {
         font-size: 31pt;
     }
 }
@@ -415,7 +416,7 @@ a.actv,a:hover {
     .main-title-frame {
         font-size: 26pt;
     }
-    .image-text-wcs {
+    .image-text-wcs, .image-text-wrtgs {
         font-size: 30pt;
     }
 }

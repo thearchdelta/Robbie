@@ -79,8 +79,9 @@ $(document).ready(function(){
        // alert("wheel");
    });
 
-   $("#scroll-hldr").scroll(function(){
-     gsap.set(".left-side",{y:$("#scroll-hldr").scrollTop()});
+   $(document).scroll(function(){
+       console.log();
+     gsap.set(".left-side",{y:$(document).scrollTop()});
    });
     /*--------------------END SUPPORT FUNCTIONS-----------------*/
 
