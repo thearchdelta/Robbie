@@ -74,15 +74,11 @@ body {
     margin-bottom: 25px;
     z-index: 1000;
 }
-@media only screen and (max-width: 1120px) {
-  .main-title-frame {
-      font-size: 36pt;
-  }
-}
-@media only screen and (max-width: 880px) {
-  .main-title-frame {
-      font-size: 26pt;
-  }
+
+.burgerMenu{
+    display: none;
+    border:solid white 5px;
+    cursor: pointer;
 }
 
 .spear{
@@ -282,16 +278,6 @@ font-family: 'Montserrat', sans-serif;
     text-align: center;
 }
 
-@media only screen and (max-width: 1120px) {
-  .image-text-wcs {
-      font-size: 36pt;
-  }
-}
-@media only screen and (max-width: 700px) {
-  .image-text-wcs {
-      font-size: 30pt;
-  }
-}
 
 .image-text-wrtgs{
     font-style: normal;
@@ -381,4 +367,47 @@ a.actv,a:hover {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #fff;
+}
+
+.theModal{
+    width:100vw;
+    height:100vh;
+    background: rgba(0, 0, 0, 0.95);
+    position: fixed;
+    z-index: 1000;
+    display: none;
+}
+.theModalMenu{
+    padding:30px;
+}
+.theModalMenu a{
+    display: block;
+    font-size: 26pt;
+}
+
+
+@media only screen and (max-width: 1120px) {
+    .main-title-frame {
+        font-size: 36pt;
+    }
+    .image-text-wcs {
+        font-size: 36pt;
+    }
+    .burgerMenu{
+        display: inline-block;
+        border:solid white 5px;
+        padding: 0 10px;
+        margin-right: 10px;
+    }
+    .main-menu{
+        display:none;
+    }
+}
+@media only screen and (max-width: 875px) {
+    .main-title-frame {
+        font-size: 26pt;
+    }
+    .image-text-wcs {
+        font-size: 30pt;
+    }
 }

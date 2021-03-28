@@ -84,6 +84,15 @@ $(document).ready(function(){
    });
     /*--------------------END SUPPORT FUNCTIONS-----------------*/
 
+    /*-------------------MENU CONTROL-----------------*/
+    $(".burgerMenu").click(()=>{
+        $(".theModal").fadeIn();
+    });
+    $(".theModal").click(()=>{
+        $(".theModal").hide();
+    });
+    /*--------------------END MENU CONTROL-----------------*/
+
     /*````````````````````````````````````/
   /     call main function fadeIn()     /
 /....................................*/
