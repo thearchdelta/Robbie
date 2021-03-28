@@ -82,14 +82,18 @@ body {
     border-radius:2px;
     transform: translateX(-20px);
 }
-
-.spear{
+.burgerMenu2{
+    color: orange;
+    display: none;
+    border:solid orange 2px;
+    cursor: pointer;
+    border-radius:2px;
+    padding: 0 10px;
+    margin-left: 40px;
+    font-size:26pt;
     position: absolute;
-    width: 975px;
-    height: 5px;
-    background: url('images/spear.png');
-    left: 50%;
-    transform: translateX(-50%);
+    top: 55px;
+    right: 0;
 }
 
 .main-menu{
@@ -101,31 +105,6 @@ body {
 }
 .menu-item{
     margin: 0 10px;
-}
-
-.bigBackText{
-    white-space: nowrap;
-    font-size:168pt;
-    font-family:Harting_plain;
-    margin-top:670px;
-    color: #121212;
-}
-.middleBackText{
-    white-space: nowrap;
-    font-size:92pt;
-    font-family:Harting_plain;
-    color: #1e1e1e;
-    margin-top:-100px;
-    /* text-shadow: 0px -24px 20px #0F0604; */
-}
-.smallBackText{
-    white-space: nowrap;
-    font-size:52pt;
-    font-family:Harting_plain;
-    color:#2a2a2a;
-    margin-top:-50px;
-    width:auto;
-    /* text-shadow: 0px -24px 20px #0F0604; */
 }
 
 .main-image{
@@ -342,7 +321,7 @@ a.actv,a:hover {
     color:white;
     position:absolute;
     top:0px;left:0;
-    width:auto;max-width: 300px;
+    width:auto;max-width: 300px;min-width:100px;
     height:90%;
     overflow-y:scroll;
     font-family:'Montserrat';
@@ -371,7 +350,7 @@ a.actv,a:hover {
   background: #fff;
 }
 
-.theModal{
+.theModal,.theModal2{
     width:100vw;
     height:100vh;
     background: rgba(0, 0, 0, 0.75);
@@ -379,6 +358,13 @@ a.actv,a:hover {
     z-index: 1000;
     display: none;
 }
+.theModal2 a{
+    color: orange;
+}
+.theModal2 a:hover{
+    border-bottom: dotted 2px orange;
+}
+
 .theModalMenu{
     background: rgba(0, 0, 0, 0.75);
     padding:30px;
@@ -395,6 +381,14 @@ a.actv,a:hover {
 }
 
 
+@media only screen and (max-width: 1330px) {
+
+    .left-side a{display: none;}
+    .burgerMenu2{
+        display: inline-block;
+    }
+}
+
 @media only screen and (max-width: 1120px) {
     .main-title-frame {
         font-size: 36pt;
@@ -404,9 +398,6 @@ a.actv,a:hover {
     }
     .burgerMenu{
         display: inline-block;
-        border:solid white 5px;
-        padding: 0 10px;
-        margin-right: 10px;
     }
     .main-menu{
         display:none;

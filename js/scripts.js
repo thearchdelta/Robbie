@@ -80,7 +80,7 @@ $(document).ready(function(){
    });
 
    $("#scroll-hldr").scroll(function(){
-     gsap.set($(".left-side"),{y:$("#scroll-hldr").scrollTop()});
+     gsap.set(".left-side",{y:$("#scroll-hldr").scrollTop()});
    });
     /*--------------------END SUPPORT FUNCTIONS-----------------*/
 
@@ -92,6 +92,15 @@ $(document).ready(function(){
     $(".theModal").click(()=>{
         gsap.to(".theModalMenu",.5,{x:"-100%"});
         $(".theModal").hide();
+    });
+
+    $(".burgerMenu2").click(()=>{
+        $(".theModal2").fadeIn();
+        gsap.to(".theModalMenu",.25,{x:0});
+    });
+    $(".theModal2").click(()=>{
+        gsap.to(".theModalMenu",.5,{x:"-100%"});
+        $(".theModal2").hide();
     });
     /*--------------------END MENU CONTROL-----------------*/
 
