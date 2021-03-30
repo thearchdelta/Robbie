@@ -81,6 +81,7 @@ body {
     cursor: pointer;
     border-radius:2px;
     transform: translateX(-20px);
+    padding: 0 10px;
 }
 .burgerMenu2{
     color: orange;
@@ -93,7 +94,7 @@ body {
     font-size:26pt;
     position: absolute;
     top: 55px;
-    right: 0;
+    right: 20px;
 }
 
 .main-menu{
@@ -326,8 +327,11 @@ a.actv,a:hover {
     height:90%;
     overflow-y:scroll;
     font-family:'Montserrat';
-    font-size:21.3333px;
+    font-size:26px;
     line-height: 1.5;
+}
+.left-side a{
+    margin-bottom: 10px;
 }
 
 /* width */
