@@ -104,7 +104,7 @@ body {
     justify-content: center;
     font-size: 17pt;
 }
-.menu-item{
+.main-menu a{
     margin: 0 10px;
 }
 
@@ -317,10 +317,13 @@ a.actv,a:hover {
     margin:auto;
 }
 
+.image-text-wrtgs h3 a{
+    color: orange;
+}
 .left-side{
     padding:50px 20px 20px 20px;
     background:#000;
-    color:white;
+    color:orange;
     position:absolute;
     top:0px;left:0;
     width:auto;max-width: 300px;min-width:100px;
@@ -332,6 +335,7 @@ a.actv,a:hover {
 }
 .left-side a{
     margin-bottom: 10px;
+        color: orange;
 }
 
 /* width */

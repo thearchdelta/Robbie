@@ -68,24 +68,28 @@ $(document).ready(function(){
     }
 
     /*-------------------SUPPORT FUNCTIONS-----------------*/
-    var nuhite = parseInt($("main").css('height')) - 50;
-    nuhite = nuhite + "px";
-    $("#scroll-hldr").css('height',nuhite);
 
-    $(document).bind('mousewheel', function(e){
-       // alert("wheel");
-   });
-    $(document).keyup(function(e){
-       // alert("wheel");
-   });
 
    $(document).scroll(function(){
-       console.log();
      gsap.set(".left-side",{y:$(document).scrollTop()});
    });
     /*--------------------END SUPPORT FUNCTIONS-----------------*/
 
+    /*`````````````````````````````````````/
+  /     DETERMINE THIS PAGE'S URL        /
+/.....................................*/
+    let url = $(location).attr('href');
+
+
     /*-------------------MENU CONTROL-----------------*/
+
+    //Add actv class to appropriate menu item
+    $(".main-menu a").each(function(){
+        if( url.indexOf( $(this).attr('href') ) > -1 ){
+            $(this).addClass("actv");
+        }
+      });
+
     $(".burgerMenu").click(()=>{
         $(".theModal").fadeIn();
         gsap.to(".theModalMenu",.25,{x:0});
@@ -108,14 +112,16 @@ $(document).ready(function(){
     /*````````````````````````````````````/
   /     call main function fadeIn()     /
 /....................................*/
-    let url = $(location).attr('href');
     if( url.indexOf("index.html") > -1 ) fadeIn(currPic);
 
-    if( url.indexOf("writings.html") > -1 ){
+    /*````````````````````````````````````````````/
+  /     Snippet size control on Writes page     /
+/............................................*/
+    if( url.indexOf("writes.html") > -1 ){
         let snippetArray = gsap.utils.toArray(".snippet");
         snippetArray.forEach((snippet)=>{
             if($(snippet).html().length > 400){
-                $(snippet).html( $(snippet).html().substring(0, 400) + "... <a href='" + $(snippet).data("id") + ".html' style='color:orange;font-size:10pt'><b>READ THE REST OF THIS ENTRY.</b></a>");
+                $(snippet).html( $(snippet).html().substring(0, 400) + "... <a href='" + $(snippet).data("id") + ".html' style='font-size:11pt'><b>READ THE REST OF THIS ENTRY.</b></a>");
             }
         })
     }
