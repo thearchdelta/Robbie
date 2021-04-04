@@ -31,6 +31,13 @@ main.main-about {
     display: flex;
     justify-content: center;
 }
+.main-writes {
+    display: flex;
+    width:100%;
+    background-color: black;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
 
 footer {
   color: black;
@@ -314,17 +321,19 @@ a.actv,a:hover {
     color: orange;
 }
 .left-side{
-    padding:50px 20px 20px 20px;
-    background:#000;
+    /* padding:50px 20px 20px 20px; */
+    background:rgba(0,0,0,0.75);
     color:orange;
-    position:absolute;
-    top:0px;left:0;
-    width:auto;max-width: 300px;min-width:100px;
-    height:90%;
-    overflow-y:scroll;
+    /* position:absolute;
+    top:0px;left:0; */
+    /* width:auto;max-width: 300px;min-width:100px; */
+    width:25%;
+    /* height:90%; */
+    /* overflow-y:scroll; */
     font-family:'Montserrat';
     font-size:26px;
     line-height: 1.5;
+    position: relative;
 }
 .left-side a{
     margin-bottom: 10px;
@@ -405,7 +414,11 @@ a.actv,a:hover {
     color:black; */
     font-style: normal;
 }
-
+.middle{
+    width:31%;
+    background-color: rgba(0,0,0,0.75);
+}
+.right-side{width:44%;}
 @media only screen and (max-width: 1330px) {
 
     .left-side a{display: none;}
@@ -446,6 +459,20 @@ a.actv,a:hover {
         background-color: rgba(0,0,0,0.55);
         text-shadow: 1px 2px 2px black;
     }
+    /*----WRITES PAGE ----*/
+    .left-side{
+        width:60px;
+        padding: 0 20px;
+    }
+    .middle{
+        width:95%;
+        padding-right:15px;
+    }
+    .main-writes{
+        background-image: url('images/writesBG.png');
+        background-size: 100% auto;
+    }
+    .right-side{width:0%;}
     /*----CONTACT PAGE ----*/
     .contactDiv-hldr{
         width:100%;
