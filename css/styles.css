@@ -337,7 +337,8 @@ a.actv,a:hover {
 }
 .left-side a{
     margin-bottom: 10px;
-        color: orange;
+    color: orange;
+    padding-left: 20px;
 }
 
 /* width */

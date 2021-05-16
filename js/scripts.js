@@ -73,6 +73,7 @@ $(document).ready(function(){
    $(document).scroll(function(){
      gsap.set(".left-side-bm",{y:$(document).scrollTop()});
      gsap.set(".right-side-edits",{y:$(document).scrollTop()/2.5});
+     gsap.set(".right-side",{y:$(document).scrollTop()/2.5});
    });
     /*--------------------END SUPPORT FUNCTIONS-----------------*/
 
