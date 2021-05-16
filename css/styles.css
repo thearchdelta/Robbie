@@ -31,7 +31,7 @@ main.main-about {
     display: flex;
     justify-content: center;
 }
-.main-writes {
+.main-writes,.main-edits {
     display: flex;
     width:100%;
     background-color: black;
@@ -414,11 +414,16 @@ a.actv,a:hover {
     color:black; */
     font-style: normal;
 }
-.middle{
+.middle,.middle-edits{
     width:31%;
     background-color: rgba(0,0,0,0.75);
 }
+.middle-edits{
+    width:41%;
+    background-color: rgba(0,0,0,0.75);
+}
 .right-side{width:44%;}
+.right-side-edits{width:54%;}
 @media only screen and (max-width: 1330px) {
 
     .left-side a{display: none;}
@@ -473,6 +478,21 @@ a.actv,a:hover {
         background-size: 100% auto;
     }
     .right-side{width:0%;}
+    /*----EDITS PAGE ----*/
+    .left-side{
+        width:60px;
+        padding: 0 20px;
+    }
+    .middle-edits{
+        width:100%;
+        padding-right:15px;
+    }
+    .main-edits{
+        background-image: url('images/masks.jpg');
+        background-attachment: fixed;
+        background-size: 100% auto;
+    }
+    .right-side-edits{width:0%;}
     /*----CONTACT PAGE ----*/
     .contactDiv-hldr{
         width:100%;
