@@ -71,9 +71,9 @@ $(document).ready(function(){
 
 
    $(document).scroll(function(){
-     gsap.set(".left-side-bm",{y:$(document).scrollTop()});
-     gsap.set(".right-side-edits",{y:$(document).scrollTop()/2.5});
-     gsap.set(".right-side",{y:$(document).scrollTop()/2.5});
+     if( url.indexOf("writes.html") > -1 ) gsap.set(".left-side-bm",{y:$(document).scrollTop()});
+     if( url.indexOf("edits.html") > -1 ) gsap.set(".right-side-edits",{y:$(document).scrollTop()/2.5});
+     if( url.indexOf("writes.html") > -1 ) gsap.set(".right-side",{y:$(document).scrollTop()/2.5});
    });
     /*--------------------END SUPPORT FUNCTIONS-----------------*/
 
@@ -127,4 +127,169 @@ $(document).ready(function(){
             }
         })
     }
+
+        /*``````````````````````````````````````````/
+      /     Get Article Titles from database      /
+    /..........................................*/
+    if(window.location.pathname.indexOf("dashboard") > 0){
+		$.ajax({
+			type: "GET",
+			url:  "php/getWritesTitles.php",
+			success: function(data) {
+				$(".sortable").prepend(data);
+			}
+		});
+	}
+
+        /*````````````````````````````````````/
+      /     Load preview from database      /
+    /....................................*/
+    if(window.location.pathname.indexOf("writePreview") > -1){
+		$.ajax({
+			type: "GET",
+			url:  "php/getPreview.php",
+			success: function(data) {
+                console.log("data : "+data);
+                data = JSON.parse(data);
+                $(".preview-title").html(data.title);
+                let cntnt = data.content
+                cntnt = cntnt.replace(/color:black/g, "text-align:left;font-weight:normal");
+                cntnt = cntnt.replace(/font-size:.*pt/g, "font-size:14pt");
+                cntnt = cntnt.replace(/<style>*<\/style>/g, "");
+                console.log(cntnt);
+                $(".preview-content").html(cntnt);
+    		}
+		});
+	}
+
+        /*````````````````````````````````````/
+      /     Load write from database      /
+    /....................................*/
+    if(window.location.pathname.indexOf("writePreview") > -1){
+		$.ajax({
+			type: "GET",
+			url:  "php/getPreview.php",
+			success: function(data) {
+                console.log("data : "+data);
+                data = JSON.parse(data);
+                $(".preview-title").html(data.title);
+                let cntnt = data.content
+                cntnt = cntnt.replace(/color:black/g, "text-align:left;font-weight:normal");
+                cntnt = cntnt.replace(/font-size:.*pt/g, "font-size:14pt");
+                cntnt = cntnt.replace(/<style>*<\/style>/g, "");
+                console.log(cntnt);
+                $(".preview-content").html(cntnt);
+    		}
+		});
+	}
+
+	//clicking 'DELETE'
+	$(".sortable").on("click", ".deleteSpan", function(){
+		var id = $(this).data("id");
+		var thisDerezzer = $("#derezzer_"+id);
+		TweenMax.set(thisDerezzer, {rotationY:-55, rotationX:-55, opacity:0, x:-50, z:-50,display:"block", transformPerspective:650});
+		TweenMax.to(thisDerezzer, .7,    {rotationY:0, rotationX:0, opacity:1, x:-140, z:0, ease:Back.easeOut});
+	});
+
+	$(".sortable").on("click", ".derezzer-no", function(){
+		var id = $(this).data("id");
+		var thisDerezzer = $("#derezzer_"+id);
+		TweenMax.to(thisDerezzer, .25,   {rotationY:55, rotationX:55, opacity:0, x:150, z:-50, ease:Back.easeIn, onComplete: function(){
+				thisDerezzer.hide();
+				TweenMax.set(thisDerezzer,{rotationY:-55, rotationX:-55, opacity:0, x:-50, z:-50, transformPerspective:650});
+			}
+		});
+	});
+
+	$(".sortable").on("click", ".derezzer-yes", function(){
+		var id = $(this).data("id");
+		$(this).css("cursor", "wait");
+		$delBtn = $(this);
+		  $.ajax({
+			type: "POST",
+			url:  "php/deleteWrite.php",
+			data: {id:id},
+			success: function(data) {
+				$delBtn.css("cursor", "pointer");
+				TweenMax.to($("#paintingRecord_"+id),0.21,{scale:0.4,opacity:.3});
+				TweenMax.to($("#paintingRecord_"+id),0.21,{y:-100, opacity:0,delay:0.4 });
+				TweenMax.to($("#paintingRecord_"+id),1,{height:0,ease:Power4.easeInOut,delay:0.4,onComplete:function(){ $("#paintingRecord_"+id).hide() } });
+			}
+		  });
+	});
+
+	//some hover effects #00bfff
+	$(".sortable").on("mouseenter", "#no",
+		function(){
+			$(this).css({
+				"background-color":"#00bfff",
+				"color":"black",
+				"box-shadow": "-1px 0px 26px 11px rgba(0,128,255,0.8)"});
+		});
+	$(".sortable").on("mouseleave", "#no",
+		function(){
+			$(this).css({"color":"#00bfff","background-color":"black","box-shadow": "none"});
+		});
+
+	$(".sortable").on("mouseenter", "#yes",
+		function(){
+			$(this).css({
+				"background-color":"#ff4000",
+				"color":"black",
+				"box-shadow": "-1px 0px 26px 11px rgba(255,0,0,0.8)"});
+		});
+	$(".sortable").on("mouseleave", "#yes",
+		function(){
+			$(this).css({"color":"#ff4000","background-color":"black","box-shadow": "none"});
+		});
+
+
 });
+/*----------------------------------------------------------------------------
+                             BARRIER:  END document.ready() FUNCTION
+-----------------------------------------------------------------------------*/
+
+/*-----------------SAVE TITLE ORDER----------------*/
+function saveTitleOrder(){
+	// showUploading();
+	// hideSaveTabs()
+	let dataArray = [];
+	let i = 1;
+	$(".paintingRecord").each(function(){
+		if($(this).is(':visible')){
+			dataArray.push({id:$(this).attr("data-id"),index:i++});
+		}
+	});
+
+	var payload = { myarray: dataArray };
+	var payloadJSON = JSON.stringify(payload);
+
+	$.post(
+	   'php/updateTitleOrder.php',
+	    { data: payloadJSON },
+	    function(data) {
+			//hideUploading();
+	        // var result = JSON.parse(data);
+			// console.log(data);
+	    });
+}
+
+    /*``````````````````````````````````/
+  /     Send preview to database      /
+/..................................*/
+function previewWrite(){
+    var f = document.getElementById("previewForm");
+    $.ajax({
+	  url: "php/savePreview.php",
+	  type: "POST",
+	  data:  new FormData(f),
+	  contentType: false,
+			cache: false,
+	  processData:false,
+	  success: function(data){
+          window.open('writePreview.html', '_blank');
+          console.log(data);
+          console.log("made it back");
+      }
+     });
+}

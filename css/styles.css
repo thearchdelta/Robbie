@@ -11,8 +11,6 @@ body, html {
   /* overflow: hidden; */
 }
 
-// etc
-
 header {
   background: black;
 }
@@ -510,6 +508,147 @@ a.actv,a:hover {
         height: 400px;
     }
 }
+
+.sortable{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.writetitle{
+    width: 100%;
+    color: white;
+    font-size: 20pt;
+    border: dashed orange 2px;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: black;
+}
+.writetitle input, .writetitle textarea{
+    width: 95%;
+    color: white;
+    font-size: 20pt;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    padding: 16px;
+    background: #121111;
+}
+.writetitle textarea{
+    font-size: 12pt;
+}
+
+.yelo-header-btn{
+	height:35px;
+	border-radius: 20px;
+	line-height: 34px;
+    background: linear-gradient(#FFBF00,#b48a0a);
+	color: #000;
+	border:none;
+	margin: 0 3px;
+	font-weight:bold;
+	position: relative;
+	font-size:16pt;
+    padding-left:16px;
+    padding-right:16px;
+    cursor: pointer;
+    border: solid black 1px;
+    text-align: center;
+}
+.yelo-header-btn-actv,.yelo-header-btn:hover{
+    background: linear-gradient(#000,#000);
+    border: solid orange 1px;
+	color: orange;
+	-webkit-box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.56);
+	box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.56);
+}
+
+.blak-header-btn{
+	height:35px;
+	border-radius: 20px;
+    background: linear-gradient(#000,#000);
+	line-height: 34px;
+	color: #ffbf00;
+    width: 100%;
+    outline: none;
+    border-radius: 16px;
+    padding: 16px;
+	position: relative;
+	font-size:16pt;
+    padding-left:16px;
+    padding-right:16px;
+    border: dashed orange 1px;
+    margin-bottom: 16px;
+}
+/* .blak-header-btn:hover{
+    background: linear-gradient(#FFBF00,#b48a0a);
+    border: solid black 1px;
+	color: black;
+	-webkit-box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.56);
+	box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.56);
+} */
+
+.bi-trash{
+    cursor: pointer;
+    margin-left:10px;
+}
+.bi-trash:hover{
+    color: red;
+}
+
+.drandle{
+    background: linear-gradient(#FFBF00,#b48a0a);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    position: absolute;
+    top:0;
+    right:0;
+    height:100%;
+    width: 100px;
+	color: rgba(0,0,0,0.3);
+    text-align: center;
+    font-size: 12pt;
+    font-weight: bold;
+    line-height: 1;
+    display: grid;
+    place-items:center;
+    cursor: grab;
+	-webkit-box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.56);
+	box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.56);
+}
+.grow-wrap {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+}
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+  resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow: hidden;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  border: 1px solid black;
+  padding: 0.5rem;
+  font: inherit;
+  font-size: 16pt;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
+}
+
 @media only screen and (max-width: 980px) {
     .main-title-frame {
         font-size: 31pt;
