@@ -279,12 +279,12 @@ font-family: 'Montserrat', sans-serif;
     margin-bottom: 50px;
 }
 
-a {
+a,.mi {
     color:white;
     text-decoration: none;
     border-bottom: solid black 2px;
 }
-a.actv,a:hover {
+a.actv,a:hover,.mi:hover {
 
     border-bottom: dotted white 2px;
 }
@@ -542,18 +542,18 @@ a.actv,a:hover {
 	height:35px;
 	border-radius: 20px;
 	line-height: 34px;
-    background: linear-gradient(#FFBF00,#b48a0a);
+    background: linear-gradient(#FFBF00,#977409);
 	color: #000;
 	border:none;
 	margin: 0 3px;
 	font-weight:bold;
-	position: relative;
 	font-size:16pt;
     padding-left:16px;
     padding-right:16px;
     cursor: pointer;
     border: solid black 1px;
     text-align: center;
+    box-shadow:5px 5px 27px 13px rgba(0,0,0,0.74);
 }
 .yelo-header-btn-actv,.yelo-header-btn:hover{
     background: linear-gradient(#000,#000);
@@ -594,6 +594,16 @@ a.actv,a:hover {
 }
 .bi-trash:hover{
     color: red;
+}
+
+.publishBtn{
+    position:fixed;
+    right:0;
+    top:300px;
+    height:110px;
+    padding-top:25px;
+    text-align:center;
+    overflow:hidden;
 }
 
 .drandle{

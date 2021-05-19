@@ -20,7 +20,7 @@ function theFunction() {
 		$ReturnTitle = $preview->title;
 		$ReturnContent = $preview->content ;
 	}
-	$result = mysqli_query( $conn,"DELETE FROM `preview`" );
+	// $result = mysqli_query( $conn,"DELETE FROM `preview`" );
 }
 
 $myObj = new \stdClass();

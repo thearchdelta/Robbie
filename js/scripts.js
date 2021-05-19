@@ -128,15 +128,47 @@ $(document).ready(function(){
         })
     }
 
-        /*``````````````````````````````````````````/
-      /     Get Article Titles from database      /
-    /..........................................*/
+        /*``````````````````````````````````````````````````````````/
+      /     Get Article Titles from database for Writes page      /
+    /..........................................................*/
+    if(window.location.pathname.indexOf("writes") > 0){
+		$.ajax({
+			type: "GET",
+			url:  "php/getWritesTitles.php?writes=true",
+			success: function(data) {
+                data = JSON.parse(data);
+				$(".left-side-bm").html(data.titles);
+				$(".scroll-contentt").html(data.content);
+			}
+		});
+	}
+
+        /*``````````````````````````````````````````````````````````/
+      /     Get Title and Content from database for Story page      /
+    /..........................................................*/
+    if(window.location.pathname.indexOf("story") > 0){
+		$.ajax({
+			type: "GET",
+			url:  "php/getPreview.php",
+			success: function(data) {
+                data = JSON.parse(data);
+				$(".preview-title").html(data.title);
+                console.log(data.titles);
+				$(".preview-content").html(data.content);
+                console.log(data.content);
+			}
+		});
+	}
+
+        /*````````````````````````````````````````````````````````/
+      /     Get Article Titles from database for dashboard      /
+    /........................................................*/
     if(window.location.pathname.indexOf("dashboard") > 0){
 		$.ajax({
 			type: "GET",
 			url:  "php/getWritesTitles.php",
 			success: function(data) {
-				$(".sortable").prepend(data);
+				$(".sortable").append(data);
 			}
 		});
 	}
@@ -149,28 +181,6 @@ $(document).ready(function(){
 			type: "GET",
 			url:  "php/getPreview.php",
 			success: function(data) {
-                console.log("data : "+data);
-                data = JSON.parse(data);
-                $(".preview-title").html(data.title);
-                let cntnt = data.content
-                cntnt = cntnt.replace(/color:black/g, "text-align:left;font-weight:normal");
-                cntnt = cntnt.replace(/font-size:.*pt/g, "font-size:14pt");
-                cntnt = cntnt.replace(/<style>*<\/style>/g, "");
-                console.log(cntnt);
-                $(".preview-content").html(cntnt);
-    		}
-		});
-	}
-
-        /*````````````````````````````````````/
-      /     Load write from database      /
-    /....................................*/
-    if(window.location.pathname.indexOf("writePreview") > -1){
-		$.ajax({
-			type: "GET",
-			url:  "php/getPreview.php",
-			success: function(data) {
-                console.log("data : "+data);
                 data = JSON.parse(data);
                 $(".preview-title").html(data.title);
                 let cntnt = data.content
@@ -213,7 +223,7 @@ $(document).ready(function(){
 				$delBtn.css("cursor", "pointer");
 				TweenMax.to($("#paintingRecord_"+id),0.21,{scale:0.4,opacity:.3});
 				TweenMax.to($("#paintingRecord_"+id),0.21,{y:-100, opacity:0,delay:0.4 });
-				TweenMax.to($("#paintingRecord_"+id),1,{height:0,ease:Power4.easeInOut,delay:0.4,onComplete:function(){ $("#paintingRecord_"+id).hide() } });
+				TweenMax.to($("#paintingRecord_"+id),.5,{padding:0,margin:0,height:0,ease:Power4.easeInOut,delay:0.4,onComplete:function(){ $("#paintingRecord_"+id).hide() } });
 			}
 		  });
 	});
@@ -279,17 +289,55 @@ function saveTitleOrder(){
 /..................................*/
 function previewWrite(){
     var f = document.getElementById("previewForm");
+    var fd = new FormData(f);
+    console.log("The Formdata is");
+    console.log(fd);
     $.ajax({
 	  url: "php/savePreview.php",
 	  type: "POST",
-	  data:  new FormData(f),
+	  data:  fd,
 	  contentType: false,
 			cache: false,
 	  processData:false,
 	  success: function(data){
-          window.open('writePreview.html', '_blank');
-          console.log(data);
-          console.log("made it back");
+          // window.open('writePreview.html', '_top');
+          // console.log('../```````````````````````````````````/');
+          // console.log('./     Send preview to database      /');
+          // console.log('/.................................../');
+          // console.log(data);
+          // console.log("made it back");
       }
      });
+}
+
+    /*``````````````````````````````````/
+  /     Publish preview to database   /
+/..................................*/
+function publishWrite(){
+    let surgeArray = gsap.utils.toArray(".upsurge");
+    gsap.to(surgeArray, 2, {y:-345,stagger:.2,ease:Power4.easeOut});
+    var f = document.getElementById("previewForm");
+    $.ajax({
+	  url: "php/publishWrite.php",
+	  type: "GET",
+	  success: function(data){
+          console.log(data);
+          console.log("made it back " + Math.random());
+      }
+    });
+}
+
+    /*``````````````````````````````````/
+  /     Open Story page              /
+/..................................*/
+function openWrite(id){
+    // window.open('story.html', '_top');
+    $.ajax({
+        type: "GET",
+        url:  "php/getWritesTitles.php",
+        data: {id:id},
+        success: function(data) {
+            window.open('story.html', '_top');
+        }
+    });
 }
