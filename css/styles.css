@@ -387,7 +387,8 @@ a.actv,a:hover,.mi:hover {
 .theModalMenu a{
     display: block;
     font-size: 26pt;
-    margin: 20px 5px;
+    margin: 0px 5px;
+    cursor: pointer;
 }
 
 .content-about{

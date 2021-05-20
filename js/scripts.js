@@ -156,6 +156,17 @@ $(document).ready(function(){
 				$(".preview-content").html(data.content);
 			}
 		});
+
+        //GET SIDE MENU CONTENT
+    		$.ajax({
+    			type: "GET",
+    			url:  "php/getWritesTitles.php?writes=true",
+    			success: function(data) {
+                    data = JSON.parse(data);
+    				$(".left-side-bm,.theModal2>.theModalMenu").prepend(data.titles);
+    			//	$(".scroll-contentt").html(data.content);
+    			}
+    		});
 	}
 
         /*````````````````````````````````````````````````````````/
