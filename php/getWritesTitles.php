@@ -20,7 +20,7 @@ function theFunction() {
 			$Return .= "<a onclick='openWrite($title->id)'>$title->title</a><br/>"  ;
 			$ReturnContent .= "
 				<div class='image-text image-text-wrtgs snippet' data-id='$title->id'>
-					<h3><a href='Alpha.html'>$title->title</a></h3>
+					<h3><a onclick='openWrite($title->id)' >$title->title</a></h3>
 					$title->content
 				</div>"  ;
 		}
@@ -32,14 +32,14 @@ function theFunction() {
 		echo $myJSON;
 	}
 	else if(isset($_GET['id'])){   //IF WE'RE GETTING A SPECIFIC STORY:
+		$query = "SELECT title,content FROM writes WHERE id=".$_GET['id'];
+		$result = mysqli_query( $conn,$query );
 		while ( $title = mysqli_fetch_object( $result ) ){
-			if($title->id == $_GET['id']){
-				$Return .= $title->title  ;
-				$ReturnContent .= $title->content;
-			}
+			$Return = mysqli_real_escape_string($conn,stripSlashes($title->title));
+			$ReturnContent = mysqli_real_escape_string($conn,stripSlashes($title->content));
 		}
 		$query = "UPDATE preview SET title='" . $Return . "',`content`='" . $ReturnContent ."' WHERE id=0";
-		$result = mysqli_query( $conn,$query );
+		$result = mysqli_query( $conn,$query ) or die($conn->error);
 
 		$myObj = new \stdClass();
 		$myObj->titles = $Return;
@@ -53,7 +53,7 @@ function theFunction() {
 			$derezzerStyle = 'z-index:1000;display:none;color: #ffb300;position: absolute;top:12%;left:50%;transform: translateX(-140px);width: 280px;height:90px;border-radius: 20px;border: dashed #ffb300 3px;background:rgba(0,0,0,0.95);font-size: 20pt;text-align: center;padding: 10px;box-shadow:5px 5px 27px 13px rgba(0,0,0,0.74)';
 			$Return .= "
 				<div class='blak-header-btn paintingRecord'  id='paintingRecord_$title->id' style='positon:relative' data-id='$title->id'>
-					$title->title <i class='bi bi-trash deleteSpan' data-id='$title->id'></i>
+					<a onclick='openWrite($title->id)' style='cursor:pointer'>$title->title</a> <i class='bi bi-trash deleteSpan' data-id='$title->id'></i>
 
 					<span class='drandle'>CLICK HERE TO DRAG</span>
 

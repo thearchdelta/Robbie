@@ -137,7 +137,7 @@ $(document).ready(function(){
 			url:  "php/getWritesTitles.php?writes=true",
 			success: function(data) {
                 data = JSON.parse(data);
-				$(".left-side-bm").html(data.titles);
+				$(".left-side-bm,.theModal2>.theModalMenu").prepend(data.titles);
 				$(".scroll-contentt").html(data.content);
 			}
 		});
@@ -153,9 +153,7 @@ $(document).ready(function(){
 			success: function(data) {
                 data = JSON.parse(data);
 				$(".preview-title").html(data.title);
-                console.log(data.titles);
 				$(".preview-content").html(data.content);
-                console.log(data.content);
 			}
 		});
 	}
@@ -183,12 +181,7 @@ $(document).ready(function(){
 			success: function(data) {
                 data = JSON.parse(data);
                 $(".preview-title").html(data.title);
-                let cntnt = data.content
-                cntnt = cntnt.replace(/color:black/g, "text-align:left;font-weight:normal");
-                cntnt = cntnt.replace(/font-size:.*pt/g, "font-size:14pt");
-                cntnt = cntnt.replace(/<style>*<\/style>/g, "");
-                console.log(cntnt);
-                $(".preview-content").html(cntnt);
+                $(".preview-content").html(data.content);
     		}
 		});
 	}
@@ -287,27 +280,30 @@ function saveTitleOrder(){
     /*``````````````````````````````````/
   /     Send preview to database      /
 /..................................*/
-function previewWrite(){
-    var f = document.getElementById("previewForm");
-    var fd = new FormData(f);
-    console.log("The Formdata is");
-    console.log(fd);
+function previewWrite(quill){
+    var previewTitle = $("#previewTitle").val();
+    var previewContent = quill.getContents();
+    var quillHtml = quill.root.innerHTML.trim();
+    var quillHtml = quillHtml.replace("#","No.");
     $.ajax({
-	  url: "php/savePreview.php",
-	  type: "POST",
-	  data:  fd,
-	  contentType: false,
-			cache: false,
-	  processData:false,
-	  success: function(data){
-          // window.open('writePreview.html', '_top');
-          // console.log('../```````````````````````````````````/');
-          // console.log('./     Send preview to database      /');
-          // console.log('/.................................../');
-          // console.log(data);
-          // console.log("made it back");
-      }
-     });
+        type: "GET",
+        url:  "php/savePreview.php",
+        data: {previewTitle:previewTitle,previewContent:quillHtml},
+        success: function(data) {
+            console.log(data);
+            window.open('writePreview.html', '_top');
+        }
+    });
+}
+
+
+function paste(quill){
+    console.log(quill.getText());
+    quill.setContents([
+        { insert: 'Hello Mporomongo ' },
+        { insert: 'World!', attributes: { bold: true } },
+        { insert: '\n' }
+    ]);
 }
 
     /*``````````````````````````````````/
@@ -316,13 +312,16 @@ function previewWrite(){
 function publishWrite(){
     let surgeArray = gsap.utils.toArray(".upsurge");
     gsap.to(surgeArray, 2, {y:-345,stagger:.2,ease:Power4.easeOut});
-    var f = document.getElementById("previewForm");
+
     $.ajax({
 	  url: "php/publishWrite.php",
 	  type: "GET",
 	  success: function(data){
-          console.log(data);
-          console.log("made it back " + Math.random());
+            data = JSON.parse(data);
+            $("#viewPgBtn").on("click",function(){
+                openWrite(data.id);
+            });
+            console.log(data.content);
       }
     });
 }
@@ -331,7 +330,6 @@ function publishWrite(){
   /     Open Story page              /
 /..................................*/
 function openWrite(id){
-    // window.open('story.html', '_top');
     $.ajax({
         type: "GET",
         url:  "php/getWritesTitles.php",

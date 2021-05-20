@@ -524,6 +524,9 @@ a.actv,a:hover,.mi:hover {
     margin-bottom: 16px;
     background: black;
 }
+.codex-editor{
+    background:gainsboro;
+}
 .writetitle input, .writetitle textarea{
     width: 95%;
     color: white;

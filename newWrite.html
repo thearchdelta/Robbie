@@ -14,7 +14,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 		<!-- BEGIN DRAGGABLE STYLE -->
 	    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<!-- END DRAGGABLE STYLE -->
+        <!-- END DRAGGABLE STYLE -->
+
+        <!-- BEGIN RICH REXT EDITOR STYLE -->
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <!-- END RICH REXT EDITOR STYLE -->
 
     </head>
 
@@ -43,15 +47,23 @@
                 <span class="yelo-header-btn" onclick="window.open('https://cloudconvert.com/docx-to-html', '_blank')">Convert Word to HTML</span>
             </div>
             <br/>
-            <div class="writetitle grow-wrap">
-                <br/>
-                <textarea id="previewContent" name="previewContent" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+            <!-- <div class="writetitle grow-wrap"> -->
+            <div class="writetitle" id="previewContent">
+                <!-- <textarea id="previewContent" name="previewContent" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea> -->
+
+                <!-- Create the editor container -->
+                <div id="editor" style="font-size:15pt;font-family:Montserrat;background-color:black;color:white">
+                  <p>Hello World!</p>
+                  <p>Some initial <strong>bold</strong> text</p>
+                  <p><br></p>
+                </div>
             </div>
         </form>
 
+
 <!-- THE PREVIEW BUTTON -->
         <div class="yelo-header-btn" style="position:fixed;right:0;top:300px;height:110px;padding-top:25px;text-align:center"
-             onclick="previewWrite()">
+             onclick="previewWrite(quill)">
              <div style="font-size:25pt"><i class="bi bi-eye"></i></div>PREVIEW</div>
         <footer>RobbieTuckerEdits.com 2021</footer>
 <!-- THE BACK BUTTON -->
@@ -65,7 +77,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollToPlugin.min.js" integrity="sha512-9DDJWj17gkdeGHU0Zr76wc9jY2g0IwE7ZCIxakVYKyzlTiOWZDZJOTaVgAzNo+LB7+EbGXxwCXkOP+a5rgkuqQ==" crossorigin="anonymous"></script>
 	    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
         <script src="js/scripts.js"></script>
+        <!-- Include the Quill library -->
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+        <!-- Initialize Quill editor -->
+        <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+          });
+        </script>
         <!-- <script src="smooth-scrollbar-master/dist/smooth-scrollbar.js"></script>
         <script>
             Scrollbar.initAll({alwaysShowTracks: true});
