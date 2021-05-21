@@ -10,9 +10,9 @@ function theFunction() {
 	global $Return;
 	$conn = OpenCon();
 
-	$previewTitle = mysqli_real_escape_string($conn,stripSlashes($_GET['previewTitle']));
-	$previewContent = mysqli_real_escape_string($conn,stripSlashes($_GET['previewContent']));
-	// $previewContent = $_GET['previewContent'];
+	$previewTitle = mysqli_real_escape_string($conn,stripSlashes($_POST['previewTitle']));
+	$previewContent = mysqli_real_escape_string($conn,stripSlashes($_POST['previewContent']));
+	// $previewContent = $_POST['previewContent'];
 
 	// $Query = "UPDATE `preview` SET (`title`, `content`) VALUES ('$previewTitle','$previewContent')";
 	$Query = "UPDATE preview SET title='" . $previewTitle . "',`content`='" . $previewContent ."' WHERE id=0";

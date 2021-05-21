@@ -3,6 +3,7 @@ body {
     height: 100vh;
     grid-template-rows: auto 1fr auto;
     background-color: black;
+    position: relative;
 }
 body, html {
   height: 100%;
@@ -390,7 +391,17 @@ a.actv,a:hover,.mi:hover {
     margin: 0px 5px;
     cursor: pointer;
 }
-
+.editGear{
+	position:absolute;
+	top:3px;
+	right:3px;
+	color:red;
+    cursor: pointer;
+}
+.editGear a{color: black;}
+.editGear:hover{
+    text-shadow: 0 0 15px white;
+}
 .content-about{
     width:1139px;
     margin:auto;
@@ -678,4 +689,51 @@ a.actv,a:hover,.mi:hover {
     .image-text-wcs, .image-text-wrtgs {
         font-size: 30pt;
     }
+}
+
+
+    /*``````````````````````````````````/
+  /               LOGIN               /
+/..................................*/
+.loginHldr form{
+    width:604px;
+    margin: auto;
+    color: white;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 1.2rem;
+    border: solid white 2px;
+    font-size:24pt;
+    font-family: 'fff_tusjbold';
+}
+.loginHldr input{
+    border: solid white 2px;
+    font-size:20pt;
+    font-family: 'fff_tusjbold';
+    padding: 5px 16px;
+    border-radius: 9px;
+    width: 380px;
+    outline:0;
+}
+.loginHldr input[type = submit]{
+font-family: 'fff_tusjbold';
+    width:100%;
+    cursor: pointer;
+}
+.loginHldr input[type = submit]:hover, #submitBtn:hover, .flstkbtn{
+    background: rgb(59, 59, 59);
+    color: rgb(239, 239, 239);
+    border:dashed gold 2px;
+    cursor: pointer;
+}
+#loginErrorMsg{
+    text-align: center;
+    font-family: 'fff_tusjbold';
+    font-size:24pt;
+    color: #cdff00;
+}
+
+#submitBtn{
+    padding: 0 20px;
+    cursor: pointer;
 }

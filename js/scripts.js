@@ -297,7 +297,7 @@ function previewWrite(quill){
     var quillHtml = quill.root.innerHTML.trim();
     var quillHtml = quillHtml.replace("#","No.");
     $.ajax({
-        type: "GET",
+        type: "POST",
         url:  "php/savePreview.php",
         data: {previewTitle:previewTitle,previewContent:quillHtml},
         success: function(data) {
