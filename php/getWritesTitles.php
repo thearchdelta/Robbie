@@ -17,11 +17,11 @@ function theFunction() {
 
 	if(isset($_GET['writes'])){ //If it's the Writes page:
 		while ( $title = mysqli_fetch_object( $result ) ){
-			$Return .= "<a onclick='openWrite($title->id)'>$title->title</a><br/>"  ;
+			$Return .= "<a onclick='openWrite($title->id)' style='cursor:pointer'>$title->title</a><br/>"  ;
 			$MySnippet = strlen($title->content) > 400 ? substr($title->content,0,400) . " ... <a onclick='openWrite($title->id)' style='font-size:11pt;cursor:pointer'><b>READ THE REST OF THIS ENTRY.</b></a>" : $title->content;
 			$ReturnContent .= "
 				<div class='image-text image-text-wrtgs snippet' data-id='$title->id'>
-					<h3><a onclick='openWrite($title->id)' >$title->title</a></h3>
+					<h3 style='cursor:pointer'><a onclick='openWrite($title->id)' >$title->title</a></h3>
 					$MySnippet
 				</div>";
 		}
