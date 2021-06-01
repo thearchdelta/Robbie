@@ -143,6 +143,7 @@ $(document).ready(function(){
 		});
 	}
 
+
         /*``````````````````````````````````````````````````````````/
       /     Get Title and Content from database for Story page      /
     /..........................................................*/
@@ -177,6 +178,7 @@ $(document).ready(function(){
 			type: "GET",
 			url:  "php/getWritesTitles.php",
 			success: function(data) {
+                console.log(data);
 				$(".sortable").append(data);
 			}
 		});
@@ -317,25 +319,6 @@ function paste(quill){
     ]);
 }
 
-    /*``````````````````````````````````/
-  /     Publish preview to database   /
-/..................................*/
-function publishWrite(){
-    let surgeArray = gsap.utils.toArray(".upsurge");
-    gsap.to(surgeArray, 2, {y:-345,stagger:.2,ease:Power4.easeOut});
-
-    $.ajax({
-	  url: "php/publishWrite.php",
-	  type: "GET",
-	  success: function(data){
-            data = JSON.parse(data);
-            $("#viewPgBtn").on("click",function(){
-                openWrite(data.id);
-            });
-            console.log(data.content);
-      }
-    });
-}
 
     /*``````````````````````````````````/
   /     Open Story page              /
@@ -347,6 +330,20 @@ function openWrite(id){
         data: {id:id},
         success: function(data) {
             window.open('story.html', '_top');
+        }
+    });
+}
+
+    /*``````````````````````````````````/
+  /     Open EDIT page              /
+/..................................*/
+function editWrite(id){
+    $.ajax({
+        type: "GET",
+        url:  "php/getWritesTitles.php",
+        data: {id:id,edit:true},
+        success: function(data) {
+            window.open('editWrite.html', '_top');
         }
     });
 }

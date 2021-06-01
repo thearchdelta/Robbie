@@ -21,6 +21,14 @@ function theFunction() {
 		$ReturnContent = $preview->content ;
 	}
 	// $result = mysqli_query( $conn,"DELETE FROM `preview`" );
+
+	/*````````````````````````````````````````````/
+  /     If We're Editing, Set the Editing flag  /
+/............................................*/
+	if(isset($_GET['edit'])){
+		$query = "UPDATE preview SET editing='1'";
+		$result = mysqli_query( $conn,$query ) or die($conn->error);
+	}
 }
 
 $myObj = new \stdClass();

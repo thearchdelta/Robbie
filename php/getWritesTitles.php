@@ -15,7 +15,7 @@ function theFunction() {
 	$query = "SELECT id,title,content FROM writes ORDER BY sequence";
 	$result = mysqli_query( $conn,$query );
 
-	if(isset($_GET['writes'])){ //If it's the Writes page:
+	if(isset($_GET['writes'])){ //If it's for the Writes page:
 		while ( $title = mysqli_fetch_object( $result ) ){
 			$Return .= "<a onclick='openWrite($title->id)' style='cursor:pointer'>$title->title</a><br/>"  ;
 			$MySnippet = strlen($title->content) > 400 ? substr($title->content,0,400) . " ... <a onclick='openWrite($title->id)' style='font-size:11pt;cursor:pointer'><b>READ THE REST OF THIS ENTRY.</b></a>" : $title->content;
@@ -48,13 +48,21 @@ function theFunction() {
 
 		$myJSON = json_encode($myObj);
 		echo $myJSON;
+
+		/*````````````````````````````````````````````/
+	  /     If We're Editing, Set the Editing flag  /
+	/............................................*/
+		if(isset($_GET['edit'])){
+			$query = "UPDATE preview SET editing='1', editID='".$_GET['id']."'";
+			$result = mysqli_query( $conn,$query ) or die($conn->error);
+		}
 	}
-	else{ //If it's the dashboard:
+	else{ //If it's for the dashboard:
 		while ( $title = mysqli_fetch_object( $result ) ){
 			$derezzerStyle = 'z-index:1000;display:none;color: #ffb300;position: absolute;top:12%;left:50%;transform: translateX(-140px);width: 280px;height:90px;border-radius: 20px;border: dashed #ffb300 3px;background:rgba(0,0,0,0.95);font-size: 20pt;text-align: center;padding: 10px;box-shadow:5px 5px 27px 13px rgba(0,0,0,0.74)';
 			$Return .= "
 				<div class='blak-header-btn paintingRecord'  id='paintingRecord_$title->id' style='positon:relative' data-id='$title->id'>
-					<a onclick='openWrite($title->id)' style='cursor:pointer'>$title->title</a> <i class='bi bi-trash deleteSpan' data-id='$title->id'></i>
+					<a onclick='editWrite($title->id)' style='cursor:pointer'>$title->title</a> <i class='bi bi-trash deleteSpan' data-id='$title->id'></i>
 
 					<span class='drandle'>CLICK HERE TO DRAG</span>
 
@@ -68,5 +76,6 @@ function theFunction() {
 		}
 		echo $Return;
 	}
+
 }
 ?>

@@ -29,7 +29,9 @@
                     <b><div class="burgerMenu"><i class="bi bi-list"></i></div><span id="titleSpan">ROBBIE TUCKER EDITS HER WRITES AND EDITS</span></b>
 
                     <div class="main-menu">
-                        <a href="index.html" class="actv">NEW WRITE</a>
+                        <a href="dashboard.html">DASHBOARD</a>
+                        <a href="writePreview.html">PREVIEW</a>
+                        <a href="editWrite.html" class="actv">EDIT WRITE</a>
                     </div>
 
                 </div>
@@ -40,16 +42,14 @@
             <div class="writetitle">
                 Title
                 <br/>
-                <input id="previewTitle" name="previewTitle" type="text"/>
+                <input id="previewTitle" name="previewTitle" type="text" class="preview-title"/>
             </div>
             <br/>
             <!-- <div class="writetitle grow-wrap"> -->
             <div class="writetitle" id="previewContent">
-                <!-- <textarea id="previewContent" name="previewContent" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea> -->
-
                 <!-- Create the editor container -->
                 <div id="editor" style="font-size:15pt;font-family:Montserrat;background-color:black;color:white">
-
+                    <div class="preview-content"><p> Helloooo <b>World</b></p></div>
                 </div>
             </div>
         </form>
@@ -58,12 +58,14 @@
 <!-- THE PREVIEW BUTTON -->
         <div class="yelo-header-btn" style="position:fixed;right:0;top:300px;height:110px;padding-top:25px;text-align:center"
              onclick="previewWrite(quill)">
-             <div style="font-size:25pt"><i class="bi bi-eye"></i></div>PREVIEW</div>
-        <footer>RobbieTuckerEdits.com 2021</footer>
+             <div style="font-size:25pt"><i class="bi bi-eye"></i></div>PREVIEW
+         </div>
 <!-- THE BACK BUTTON -->
         <div class="yelo-header-btn" style="position:fixed;left:0;top:300px;height:110px;padding-top:25px;text-align:center;width:95px;line-height:1"
              onclick="window.open('dashboard.html', '_top')">
-             <div style="font-size:25pt"><i class="bi bi-arrow-left-circle"></i></div>DASH-<br/>BOARD</div>
+             <div style="font-size:25pt"><i class="bi bi-arrow-left-circle"></i></div> DASH-<br/>BOARD
+         </div>
+
         <footer>RobbieTuckerEdits.com 2021</footer>
 
         <!-- BEGIN SCRIPTS  -->
@@ -81,6 +83,23 @@
         var quill = new Quill('#editor', {
             theme: 'snow'
           });
+
+              /*``````````````````````````````````````````````````````````/
+            /     Get Title and Content from database for EDIT page      /
+          /..........................................................*/
+          if(window.location.pathname.indexOf("editWrite") > 0){
+      		$.ajax({
+      			type: "GET",
+      			url:  "php/getPreview.php",
+                data: {edit:true},
+      			success: function(data) {
+                      data = JSON.parse(data);
+      				$(".preview-title").val(data.title);
+                    // quill.setText(data.content);
+      				$(".ql-editor").html(data.content);
+      			}
+      		});
+          }
         </script>
         <!-- <script src="smooth-scrollbar-master/dist/smooth-scrollbar.js"></script>
         <script>
