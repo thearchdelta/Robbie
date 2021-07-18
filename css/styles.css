@@ -22,7 +22,7 @@ main {
 }
 main.main-about {
     background-color: black;
-    background-image: url('images/cats01.png');
+    background-image: url('images/cats02.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -36,6 +36,9 @@ main.main-about {
     background-color: black;
     background-position: right top;
     background-repeat: no-repeat;
+}
+.main-writes{
+    justify-content: center;
 }
 
 footer {
@@ -131,8 +134,7 @@ body {
     height:100%;
     background-position: center;
     background-repeat: no-repeat;
-    /* background-size: 700px auto; */
-    opacity:0;
+    background-size: auto 120%;
     /* opacity:1; */
 
 }
@@ -192,19 +194,48 @@ body {
     width:600px;
     margin: auto;
     background:url('images/contactBG.png');
+    background:url('images/contactBG2.png');
+    background:url('images/contactBG3.png');
+    background-repeat:no-repeat;
+    background-position:top center;
+    display:flex;
+    justify-content:center;
+}
+
+.contactDiv-hldr2{
+    width:600px;
+    margin: auto;
+    background:url('images/contactBG.png');
+    background:url('images/contactBG2.png');
+    background:url('images/contactBG3.png');
+    background:url('images/contactBG4.png');
+    background-repeat:no-repeat;
+    background-position:top center;
+    display:flex;
+    justify-content:center;
+}
+
+.contactDiv-hldr3{
+    width:600px;
+    margin: auto;
+    background:url('images/contactBG.png');
+    background:url('images/contactBG2.png');
+    background:url('images/contactBG3.png');
+    background:url('images/contactBG4.png');
+    background:url('images/contactBG6.png');
     background-repeat:no-repeat;
     background-position:top center;
     display:flex;
     justify-content:center;
 }
 .contactDiv{
-    margin-top:289px;
+    margin-top:368px;
     width:100%;
     padding:20px;
     text-align:center;
     font-size: 16pt;
     color:white;
-    text-shadow: 1px 1px 2px black;
+    text-shadow: 1px 1px 5px black;
 }
 .contactDiv input,.contactDiv textarea{
     padding: 10px;
@@ -217,23 +248,74 @@ body {
     -webkit-box-shadow: 0px 4px 22px 2px rgba(0,0,0,0.56);
     box-shadow: 0px 4px 22px 2px rgba(0,0,0,0.56);
 }
+.form-element2{
+    width:80%;padding:15px;font-size:14pt;outline:0;border:none;
+    -webkit-box-shadow: 0px 4px 22px 2px rgba(0,0,0,0.56);
+    box-shadow: 0px 4px 22px 2px rgba(0,0,0,0.56);
+}
+
+.send-btn{
+    cursor:pointer;
+    width:83%;
+    border:solid white 2px;
+    background:black;
+    color:white;
+    padding:15px
+}
+.send-btn:hover{
+    background:white;color:black;
+}
+.send-btn:active {
+    background:black;color:#ffbf00; border: solid 2px #ffbf00;
+}
+#emailMsgHldr{
+    position: absolute;
+    width: 88%;
+    height: 100%;
+    top:0;
+    left:6%;
+    display: grid;
+    place-items:center;
+    background: rgba(0,0,0,0.75);
+    display: none;
+}
+#emailMsg{
+    background: white;
+    border-radius:5px;
+    padding: 30px;
+    color:black;
+    text-shadow: none;
+}
+#emailMsgXOut{
+    position: absolute;
+    top:7px;
+    right:10px;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s;
+}
+#emailMsgXOut:hover{
+    transform: scale(1.3);
+    transition: transform 0.3s;
+}
+
 ::placeholder {
 font-family: 'Montserrat', sans-serif;
-  color: #bbb;
+  color: black;
   font-weight:bold;
   font-style:italic;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
- color: #bbb;
+ color: red;
  font-weight:bold;
  font-style:italic;
  font-family: 'Montserrat', sans-serif;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
- color: #bbb;
+ color: red;
  font-weight:bold;
  font-style:italic;
  font-family: 'Montserrat', sans-serif;
@@ -249,6 +331,7 @@ font-family: 'Montserrat', sans-serif;
     height:100%;
     display: grid;
     place-items: center;
+    font-size: 30pt;
  }
 
 .image-text,.image-text-wcs,.image-text-wrtgs{
@@ -259,20 +342,35 @@ font-family: 'Montserrat', sans-serif;
     height:auto;
     font-style: italic;
     color: white;
-}
-.image-text span,.image-text-wcs span{
-    text-transform: capitalize;
-    font-style: normal;
-    display: block;
-    text-align: center;
+    text-shadow: 1px 1px 0px #000;
 }
 
+.image-text-hldr>.image-text{
+    color:#ffa500;
+    font-weight: 600;
+    text-shadow: 2px 2px 1px #000;
+}
+.image-text-wcs span{
+    font-style: normal;
+    display: block;
+    margin-left: 50px;
+}
+.image-text span{
+    /* text-transform: capitalize; */
+    font-style: normal;
+    /* text-align: center; */
+}
+
+#WACAppBase{
+    background:black !important;
+}
 
 .image-text-wrtgs{
     font-style: normal;
 }
 .image-text-wrtgs h3{
-    margin-top:50px;
+    /* margin-top:50px;
+    margin-top:50px; */
     text-align:left;
     margin-bottom:5px;
 }
@@ -309,11 +407,6 @@ a.actv,a:hover,.mi:hover {
     overflow-y: scroll;
     outline: none;
     position: absolute;
-}
-.scroll-content{
-    width:700px;
-    padding: 0 20px;
-    margin:auto;
 }
 
 .image-text-wrtgs h3 a{
@@ -403,27 +496,31 @@ a.actv,a:hover,.mi:hover {
     text-shadow: 0 0 15px white;
 }
 .content-about{
-    width:1139px;
-    margin:auto;
+    justify-content:center;
     display: flex;
+    width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cat-img-div{
-    width:750px;
+    width:65%;
 }
 .cat-txt-div{
-    width:389px;
+    width:35%;
     font-weight:bold;
     color:white;
     /* width:100%; */
     padding-left: 20px;
     padding-right: 20px;
-    background-color: rgba(0,0,0,0.55);
-    background-color: rgba(30,30,30,0.55);
+    /* background-color: rgba(0,0,0,0.55);
+    background-color: rgba(30,30,30,0.55); */
     /* text-shadow: 1px 2px 2px black; */
     /* background-color: white;
     color:black; */
     font-style: normal;
+    display: grid;
+    place-items:center;
 }
 .middle,.middle-edits{
     width:31%;
@@ -432,15 +529,20 @@ a.actv,a:hover,.mi:hover {
 .middle-edits{
     width:41%;
     background-color: rgba(0,0,0,0.75);
+    padding-top: 55px;
+    padding-top: 100px;
 }
-.right-side{width:44%;}
-.right-side-edits{width:54%;}
+.right-side{width:54%;}
+.right-side-edits{width:45%;}
 @media only screen and (max-width: 1330px) {
 
     .left-side a{display: none;}
     .burgerMenu2{
         display: inline-block;
     }
+    /*----WRITES PAGE ----*/
+
+    /*----EDITS PAGE ----*/
 }
 
 @media only screen and (max-width: 1120px) {
@@ -484,10 +586,6 @@ a.actv,a:hover,.mi:hover {
         width:95%;
         padding-right:15px;
     }
-    .main-writes{
-        background-image: url('images/writesBG.png');
-        background-size: 100% auto;
-    }
     .right-side{width:0%;}
     /*----EDITS PAGE ----*/
     .left-side{
@@ -499,7 +597,7 @@ a.actv,a:hover,.mi:hover {
         padding-right:15px;
     }
     .main-edits{
-        background-image: url('images/masks.jpg');
+        background-image: url('images/zazabars.png');
         background-attachment: fixed;
         background-size: 100% auto;
     }
@@ -521,6 +619,40 @@ a.actv,a:hover,.mi:hover {
     }
 }
 
+@media only screen and (max-width: 980px) {
+    .main-title-frame {
+        font-size: 31pt;
+    }
+    .image-text-wcs, .image-text-wrtgs {
+        font-size: 31pt;
+    }
+    .image-text-hldr>.image-text{
+        padding:40px;
+        max-width:700px;
+        height:100%;
+        display: grid;
+        place-items: center;
+        font-size: 40pt;
+     }
+     /*----WRITES PAGE ----*/
+     .middle{
+         width:100%;
+         padding:50px;
+     }
+     /*----EDITS PAGE ----*/
+     .middle-edits{
+         padding-top: 0;
+     }
+}
+
+@media only screen and (max-width: 875px) {
+    .main-title-frame {
+        font-size: 26pt;
+    }
+    .image-text-wcs, .image-text-wrtgs {
+        font-size: 30pt;
+    }
+}
 .sortable{
     width: 50%;
     margin-left: auto;
@@ -672,23 +804,6 @@ a.actv,a:hover,.mi:hover {
 
   /* Place on top of each other */
   grid-area: 1 / 1 / 2 / 2;
-}
-
-@media only screen and (max-width: 980px) {
-    .main-title-frame {
-        font-size: 31pt;
-    }
-    .image-text-wcs, .image-text-wrtgs {
-        font-size: 31pt;
-    }
-}
-@media only screen and (max-width: 875px) {
-    .main-title-frame {
-        font-size: 26pt;
-    }
-    .image-text-wcs, .image-text-wrtgs {
-        font-size: 30pt;
-    }
 }
 
 

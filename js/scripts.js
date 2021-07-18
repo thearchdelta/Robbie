@@ -3,39 +3,7 @@ $(document).ready(function(){
     let picArray = gsap.utils.toArray(".main-frame");
     let currPic = picArray.length-1;
 
-    function fadeInOld(picIndex){
-    //if it's a text div
-        if($(picArray[picIndex]).find(".image-text").length !== 0){
-            gsap.set($(picArray[picIndex]).find(".image-text"),{scale:1.2});
-            gsap.set($(picArray[picIndex]),{opacity:1});
-
-            gsap.to($(picArray[picIndex]).find(".image-text"),2,{scale:1});
-            gsap.to($(picArray[picIndex]).find(".image-text"),2.5,{opacity:1});
-
-            // here
-            let nextIndex = picIndex === 0 ? picArray.length-1 : picIndex - 1 ;
-            gsap.set($(picArray[nextIndex]),{opacity:0,backgroundSize:"120% 120%",backgroundPosition:"center center"});
-
-            gsap.to($(picArray[nextIndex]),2,{opacity:1,ease:Power4.easeIn,delay:0});
-            gsap.to($(picArray[nextIndex]),3.5,{ backgroundSize:"100% 100%",delay:0.5 });
-            //end here
-
-            gsap.to($(picArray[picIndex]).find(".image-text"),1,{opacity:0,scale:1,delay:1.5,onComplete:function(){
-                currPic = picIndex === 0 ? picArray.length-1 : picIndex - 1 ;
-                fadeIn(currPic);
-            }});
-        }
-    //if it's an image div
-        else{
-            gsap.to($(picArray[picIndex]),.95,{opacity:0,backgroundSize:"95% 95%",delay:0,onComplete:function(){
-                currPic = picIndex === 0 ? picArray.length-1 : picIndex - 1 ;
-                fadeIn(currPic);
-            }});
-        }
-
-    }
-
-    function fadeIn(picIndex){
+    function fadeIn_old(picIndex){
     //if it's a text div
         if($(picArray[picIndex]).find(".image-text").length !== 0){
             gsap.set($(picArray[picIndex]).find(".image-text"),{scale:1.2});
@@ -66,6 +34,7 @@ $(document).ready(function(){
         }
 
     }
+
 
     /*-------------------SUPPORT FUNCTIONS-----------------*/
 
@@ -111,11 +80,6 @@ $(document).ready(function(){
     });
     /*--------------------END MENU CONTROL-----------------*/
 
-    /*````````````````````````````````````/
-  /     call main function fadeIn()     /
-/....................................*/
-    if( url.indexOf("index.html") > -1 ) fadeIn(currPic);
-
     /*````````````````````````````````````````````/
   /     Snippet size control on Writes page     /
 /............................................*/
@@ -123,7 +87,7 @@ $(document).ready(function(){
         let snippetArray = gsap.utils.toArray(".snippet");
         snippetArray.forEach((snippet)=>{
             if($(snippet).html().length > 400){
-                $(snippet).html( $(snippet).html().substring(0, 400) + "... <a href='" + $(snippet).data("id") + ".html' style='font-size:11pt'><b>READ THE REST OF THIS ENTRY.</b></a>");
+                $(snippet).html( $(snippet).html().substring(0, 400) + "... <a href='" + $(snippet).data("id") + ".html' style='font-size:11pt'><b>READ THE REST.</b></a>");
             }
         })
     }
@@ -143,33 +107,6 @@ $(document).ready(function(){
 		});
 	}
 
-
-        /*``````````````````````````````````````````````````````````/
-      /     Get Title and Content from database for Story page      /
-    /..........................................................*/
-    if(window.location.pathname.indexOf("story") > 0){
-		$.ajax({
-			type: "GET",
-			url:  "php/getPreview.php",
-			success: function(data) {
-                data = JSON.parse(data);
-				$(".preview-title").html(data.title);
-				$(".preview-content").html(data.content);
-			}
-		});
-
-        //GET SIDE MENU CONTENT
-    		$.ajax({
-    			type: "GET",
-    			url:  "php/getWritesTitles.php?writes=true",
-    			success: function(data) {
-                    data = JSON.parse(data);
-    				$(".left-side-bm,.theModal2>.theModalMenu").prepend(data.titles);
-    			//	$(".scroll-contentt").html(data.content);
-    			}
-    		});
-	}
-
         /*````````````````````````````````````````````````````````/
       /     Get Article Titles from database for dashboard      /
     /........................................................*/
@@ -178,7 +115,6 @@ $(document).ready(function(){
 			type: "GET",
 			url:  "php/getWritesTitles.php",
 			success: function(data) {
-                console.log(data);
 				$(".sortable").append(data);
 			}
 		});
@@ -226,6 +162,7 @@ $(document).ready(function(){
 			url:  "php/deleteWrite.php",
 			data: {id:id},
 			success: function(data) {
+                console.log(data);
 				$delBtn.css("cursor", "pointer");
 				TweenMax.to($("#paintingRecord_"+id),0.21,{scale:0.4,opacity:.3});
 				TweenMax.to($("#paintingRecord_"+id),0.21,{y:-100, opacity:0,delay:0.4 });
@@ -259,11 +196,133 @@ $(document).ready(function(){
 			$(this).css({"color":"#ff4000","background-color":"black","box-shadow": "none"});
 		});
 
+        $(".send-btn").click(function(){
+            $("#emailMsgHldr").fadeIn();
+            $.ajax({
+                type: "POST",
+                url:  "php/sendEmail.php",
+                data: {nameField:$("#nameField").val(),emailField:$("#emailField").val(),messageField:$("#messageField").val()},
+                success: function(data) {
+                    $("#emailMsg").html(data);
+                    gsap.to("#emailMsgHldr",0.95,{display:"none",delay:1,onComplete:function(){
+                        $("#emailMsg").html("Sending...");
+                        $("#nameField").val("");
+                        $("#emailField").val("");
+                        $("#messageField").val("");
+
+                    }});
+                }
+            });
+        });
+
+        $("#emailMsgXOut").click(function(){
+            $("#emailMsgHldr").fadeOut();
+            $("#emailMsg").html("Sending...");
+        });
+
+});
+
+/*-----------------CLICKKING THE SUBMIT BUTTON----------------*/
+//--- Clicking the SUBMIT button
+$("#submitBtn").click(function(){
+    console.log("asg");
+	// showUploading();
+   var f = document.getElementById("guiForm");
+
+	 $.ajax({
+	  url: "php/uploadNewImage.php",
+	  type: "POST",
+	  data:  new FormData(f),
+	  contentType: false,
+			cache: false,
+	  processData:false,
+	  beforeSend : function()
+	  {
+	   //$("#preview").fadeOut();
+	   $("#err").fadeOut();
+	  },
+	  success: function(data)
+		 {
+             console.log(data);
+             $("#results").html(data);
+             f.reset();
+		   // hideUploading();
+		   if(data=='invalid')
+		   {
+			// invalid file format.
+			console.log("Invalid File !");
+		   }
+		   else
+		   {
+			  /* DO SUCCESS STUFF HERE */;
+		   }
+		 },
+		error: function(e)
+		 {
+	   console.log(e);
+		 }
+	   });
 
 });
 /*----------------------------------------------------------------------------
                              BARRIER:  END document.ready() FUNCTION
 -----------------------------------------------------------------------------*/
+
+
+    /*```````````````````````````````````````/
+  /     Master Prime Function FadeIn()      /
+/........................................*/
+    function createChildTL(j){
+        let delay = j == 0 ? '-=0' : '-=0.5';
+        const myTimeline = gsap.timeline();
+        myTimeline.set($("#ti"+j), {scale:1.2})
+                  .to($("#ti"+j),2.5,{scale:1,opacity:1})
+                  .fromTo($("#mf"+j), {backgroundSize:"auto 120%",opacity:0}, {duration: 1.5, backgroundSize:"auto 100%",opacity:1},'-=1.5')
+                  .to($("#ti"+j),{duration:1,scale:.9,opacity:0},'-=.5')
+                  .to($("#mf"+j), {duration:1,backgroundSize:"auto 90%",opacity:0},'-=1');
+        return myTimeline;
+    }
+
+    function fadeIn(){
+        let masterTimeline = gsap.timeline({
+          delay: 0.0,
+          paused: true, // default is false
+          repeat: -1, // number of repeats (-1 for infinite)
+          repeatDelay: 0, // seconds between repeats
+          repeatRefresh: true, // invalidates on each repeat
+          yoyo: false, // if true > A-B-B-A, if false > A-B-A-B
+          defaults: { // children inherit these defaults
+            /*duration: 1,*/
+            /*ease: "none" */
+          },
+          smoothChildTiming: true
+        });
+        for(var i=0; i<11;i++){
+            masterTimeline.add(createChildTL(i),'part'+i)
+        }
+        masterTimeline.play();
+    }
+
+	function showUploading(){
+		TweenMax.set($(".modal"),{display:"grid"});
+		let savedHldr = $(".saveHldr-modal");
+		let outerCirc = $(".saveOuterCirc-modal");
+		let savedSpan = $(".saveTxtHldr-modal");
+
+		TweenMax.set(savedHldr,{scale:.5,opacity:0,y:0});
+		TweenMax.set(savedSpan,{rotation:"-30deg"});
+		TweenMax.set(outerCirc,{rotation:"0deg"});
+
+		TweenMax.set(savedHldr,{display:"block"});
+		TweenMax.to(savedHldr,.25,{scale:3,opacity:1});
+		TweenMax.to(outerCirc,7.95,{rotation:"390deg"});
+		TweenMax.to(savedSpan,.4,{rotation:"0deg",ease:Power4.easeOut});
+
+		// TweenMax.to(savedHldr,.1,{scale:0.4,opacity:0.5,delay:.5});
+		// TweenMax.to(savedHldr,.1,{y:-100,opacity:0,delay:.7, onComplete:function(){ TweenMax.set(savedHldr,{display:"none"}) }});
+	}
+
+
 
 /*-----------------SAVE TITLE ORDER----------------*/
 function saveTitleOrder(){
@@ -346,4 +405,23 @@ function editWrite(id){
             window.open('editWrite.html', '_top');
         }
     });
+}
+
+/*``````````````````````````````````/
+/     Parse URL Search term              /
+/..................................*/
+function searchToObject() {
+  var pairs = window.location.search.substring(1).split("&"),
+    obj = {},
+    pair,
+    i;
+
+  for ( i in pairs ) {
+    if ( pairs[i] === "" ) continue;
+
+    pair = pairs[i].split("=");
+    obj[ decodeURIComponent( pair[0] ) ] = decodeURIComponent( pair[1] );
+  }
+
+  return obj;
 }

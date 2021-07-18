@@ -1,0 +1,12 @@
+
+form#guiForm label, form#editForm label{
+	width:115px;
+	display:inline-block;
+}
+
+form{
+    color:white;
+}
+input{
+    color:black;
+}

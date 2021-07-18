@@ -2,26 +2,28 @@
 include "dbConnect.php";
 $conn = OpenCon();
 
-$Return = "";
-$ReturnContent = "";
 
 theFunction();
 
 function theFunction() {
-	global $Return;
-	global $ReturnContent;
-	$conn = OpenCon();
+	global $Return,$ReturnContent,$MySnippet,$conn;
 
-	$query = "SELECT id,title,content FROM writes ORDER BY sequence";
+	$query = "SELECT id,title,filename,snippet FROM writes ORDER BY sequence";
 	$result = mysqli_query( $conn,$query );
 
 	if(isset($_GET['writes'])){ //If it's for the Writes page:
+		$spaceCounter = 0;
 		while ( $title = mysqli_fetch_object( $result ) ){
-			$Return .= "<a onclick='openWrite($title->id)' style='cursor:pointer'>$title->title</a><br/>"  ;
-			$MySnippet = strlen($title->content) > 400 ? substr($title->content,0,400) . " ... <a onclick='openWrite($title->id)' style='font-size:11pt;cursor:pointer'><b>READ THE REST OF THIS ENTRY.</b></a>" : $title->content;
+			$Return .= "<a href='story.html?id=$title->id' >$title->title</a><br/>"  ;
+
+			if( strlen($title->snippet) > 0 ){
+				$MySnippet = $title->snippet . " ... <a href='story.html?id=$title->id' style='font-size:11pt'><b>READ THE REST.</b></a>";
+			}
+			else $MySnippet = "";
+
 			$ReturnContent .= "
 				<div class='image-text image-text-wrtgs snippet' data-id='$title->id'>
-					<h3 style='cursor:pointer'><a onclick='openWrite($title->id)' >$title->title</a></h3>
+					<h3 style='cursor:pointer'><a href='story.html?id=$title->id' >$title->title</a></h3>
 					$MySnippet
 				</div>";
 		}
@@ -33,17 +35,15 @@ function theFunction() {
 		echo $myJSON;
 	}
 	else if(isset($_GET['id'])){   //IF WE'RE GETTING A SPECIFIC STORY:
-		$query = "SELECT title,content FROM writes WHERE id=".$_GET['id'];
+		$query = "SELECT title,filename FROM writes WHERE id=".$_GET['id'];
 		$result = mysqli_query( $conn,$query );
 		while ( $title = mysqli_fetch_object( $result ) ){
-			$Return = mysqli_real_escape_string($conn,stripSlashes($title->title));
-			$ReturnContent = mysqli_real_escape_string($conn,stripSlashes($title->content));
+			$Return = "$title->title";
+			$ReturnContent = "$title->filename";
 		}
-		$query = "UPDATE preview SET title='" . $Return . "',`content`='" . $ReturnContent ."' WHERE id=0";
-		$result = mysqli_query( $conn,$query ) or die($conn->error);
 
 		$myObj = new \stdClass();
-		$myObj->titles = $Return;
+		$myObj->title = $Return;
 		$myObj->content = $ReturnContent;
 
 		$myJSON = json_encode($myObj);
@@ -62,7 +62,7 @@ function theFunction() {
 			$derezzerStyle = 'z-index:1000;display:none;color: #ffb300;position: absolute;top:12%;left:50%;transform: translateX(-140px);width: 280px;height:90px;border-radius: 20px;border: dashed #ffb300 3px;background:rgba(0,0,0,0.95);font-size: 20pt;text-align: center;padding: 10px;box-shadow:5px 5px 27px 13px rgba(0,0,0,0.74)';
 			$Return .= "
 				<div class='blak-header-btn paintingRecord'  id='paintingRecord_$title->id' style='positon:relative' data-id='$title->id'>
-					<a onclick='editWrite($title->id)' style='cursor:pointer'>$title->title</a> <i class='bi bi-trash deleteSpan' data-id='$title->id'></i>
+					$title->title <i class='bi bi-trash deleteSpan' data-id='$title->id'></i>
 
 					<span class='drandle'>CLICK HERE TO DRAG</span>
 

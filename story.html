@@ -35,19 +35,19 @@
 
         <main class="main-writes">
 
-            <div class="left-side">
+            <!-- <div class="left-side">
                 <div class="left-side-bm">
                     <div class="burgerMenu2"><i class="bi bi-list"></i></div>
                 </div>
-            </div>
-<div class="middle">
+            </div> -->
+            <div class="middle" style="width:1000px">
                 <div class="scroll-content">
                     <div class="image-text image-text-wrtgs" id="Alpha">
-                        <h3 class="preview-title"></h3>
+                        <h3 class="preview-title" style="text-align:center"></h3>
                         <div class="preview-content" style="color:white;text-align:left"></div>
                     </div>
                 </div>
-</div>
+            </div>
         </main>
         <footer>RobbieTuckerEdits.com 2021</footer>
         <div class="theModal">
@@ -68,10 +68,21 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollToPlugin.min.js" integrity="sha512-9DDJWj17gkdeGHU0Zr76wc9jY2g0IwE7ZCIxakVYKyzlTiOWZDZJOTaVgAzNo+LB7+EbGXxwCXkOP+a5rgkuqQ==" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <!-- <script src="smooth-scrollbar-master/dist/smooth-scrollbar.js"></script>
+
         <script>
-            Scrollbar.initAll({alwaysShowTracks: true});
-        </script> -->
+        // $(".preview-title").html(searchToObject().id);
+        $.ajax({
+            type: "GET",
+            url:  "php/getWritesTitles.php",
+            data: {id:searchToObject().id},
+            success: function(data) {
+                    data = JSON.parse(data);
+                $(".preview-title").html(data.title);
+                let iframeContent = "<iframe style='background:black' src='https://view.officeapps.live.com/op/embed.aspx?src=https://www.robbietuckerwrites.com/upload/"+ data.content +"' width='100%' height='900px' frameborder='0'> </iframe>";
+                $(".preview-content").html(iframeContent);
+            }
+        });
+        </script>
         <!-- END SCRIPTS  -->
     </body>
 </html>
