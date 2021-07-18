@@ -38,13 +38,14 @@ function theFunction() {
 		$query = "SELECT title,filename FROM writes WHERE id=".$_GET['id'];
 		$result = mysqli_query( $conn,$query );
 		while ( $title = mysqli_fetch_object( $result ) ){
-			$Return = "$title->title";
+			$Return = $title->title;
 			$ReturnContent = "$title->filename";
 		}
 
 		$myObj = new \stdClass();
 		$myObj->title = $Return;
 		$myObj->content = $ReturnContent;
+		$myObj->escapedContent = urlencode($ReturnContent);
 
 		$myJSON = json_encode($myObj);
 		echo $myJSON;

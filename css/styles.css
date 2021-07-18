@@ -361,8 +361,99 @@ font-family: 'Montserrat', sans-serif;
     /* text-align: center; */
 }
 
-#WACAppBase{
-    background:black !important;
+
+.modal{
+    top:0;
+    left:0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    place-items: center;
+}
+.saveHldr-modal {
+    width:50px;height:50px;
+    position:relative;
+    transform: scale(3)
+}
+.saveOuterCirc-modal {
+    position:absolute;
+    width:50px;height:50px;
+    border-radius:35px;
+    border:dashed yellowgreen 3px;
+    box-shadow: 0px 0px 10px 3px rgba(255,255,255,0.97);
+}
+.saveInnerCirc-modal {
+    position:absolute;
+    width:35px;height:35px;
+    border-radius:18px;
+    border:dotted white 2px;
+    top:7.5px;left:7.5px;
+}
+.saveTxtHldr-modal   {
+    position:absolute;
+    width:150px;
+    height:50px;
+    display:grid;
+    place-items:center;top:3px;
+    left:-50px;font-weight:900;
+    font-size:11pt;
+}
+
+.leftSaverHldr{
+    padding:27px 37px 27px 0;
+    border-top-right-radius: 66px;
+    border-bottom-right-radius: 66px;
+    position: absolute;
+    top: 50vh;
+    left:-4px;
+    -webkit-box-shadow: 0px 0px 17px 7px #c5ff00;
+    box-shadow: 0px 0px 17px 7px #c5ff00;
+    border: dashed #c5ff00 4px;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.6) , black);
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: none;
+}
+.leftSaver{
+    background: white;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding:12px;
+    padding-right:16px;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 17px 3px #c5ff00;
+    box-shadow: 0px 0px 17px 3px #c5ff00;
+    background-image: linear-gradient(to left, white , #e1ffa9);
+}
+
+.rightSaverHldr{
+    padding:27px 0 27px 37px;
+    border-top-left-radius: 66px;
+    border-bottom-left-radius: 66px;
+    position: absolute;
+    top: 50vh;
+    right:-4px;
+    -webkit-box-shadow: 0px 0px 17px 7px #c5ff00;
+    box-shadow: 0px 0px 17px 7px #c5ff00;
+    border: dashed #c5ff00 4px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6) , black);
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: none;
+}
+.rightSaver{
+    background: white;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding:12px;
+    padding-left:16px;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 17px 3px #c5ff00;
+    box-shadow: 0px 0px 17px 3px #c5ff00;
+    background-image: linear-gradient(to right, white , #e1ffa9);
+}
+.leftSaverHldr:hover,.rightSaverHldr:hover {
+    transform:scale(1.2);
+    transition: transform 0.3s;
 }
 
 .image-text-wrtgs{

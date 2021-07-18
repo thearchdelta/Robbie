@@ -225,8 +225,7 @@ $(document).ready(function(){
 /*-----------------CLICKKING THE SUBMIT BUTTON----------------*/
 //--- Clicking the SUBMIT button
 $("#submitBtn").click(function(){
-    console.log("asg");
-	// showUploading();
+    showUploading();
    var f = document.getElementById("guiForm");
 
 	 $.ajax({
@@ -244,6 +243,7 @@ $("#submitBtn").click(function(){
 	  success: function(data)
 		 {
              console.log(data);
+		     hideUploading();
              $("#results").html(data);
              f.reset();
 		   // hideUploading();
@@ -425,3 +425,27 @@ function searchToObject() {
 
   return obj;
 }
+
+	function showUploading(){
+		TweenMax.set($(".modal"),{display:"grid"});
+		let savedHldr = $(".saveHldr-modal");
+		let outerCirc = $(".saveOuterCirc-modal");
+		let savedSpan = $(".saveTxtHldr-modal");
+
+		TweenMax.set(savedHldr,{scale:.5,opacity:0,y:0});
+		TweenMax.set(savedSpan,{rotation:"-30deg"});
+		TweenMax.set(outerCirc,{rotation:"0deg"});
+
+		TweenMax.set(savedHldr,{display:"block"});
+		TweenMax.to(savedHldr,.25,{scale:3,opacity:1});
+		TweenMax.to(outerCirc,7.95,{rotation:"390deg"});
+		TweenMax.to(savedSpan,.4,{rotation:"0deg",ease:Power4.easeOut});
+
+		// TweenMax.to(savedHldr,.1,{scale:0.4,opacity:0.5,delay:.5});
+		// TweenMax.to(savedHldr,.1,{y:-100,opacity:0,delay:.7, onComplete:function(){ TweenMax.set(savedHldr,{display:"none"}) }});
+	}
+
+	function hideUploading(){
+		TweenMax.set($(".modal"),{display:"none"});
+		TweenMax.set($(".savedHldr-modal"),{display:"none"});
+	}

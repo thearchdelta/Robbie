@@ -18,7 +18,7 @@ if ( isset( $_FILES['docFile'] ) ) {
 
 		if (file_exists($dest_file)) {
 
-			print "The file name already exists!!";
+			print "The file <span style='color:#ffa500'><i>'$filename'</i></span> name already exists!!";
 		}
 		else {
 
@@ -26,12 +26,12 @@ if ( isset( $_FILES['docFile'] ) ) {
     		or die ("Error!!");
 
     		if($_FILES['docFile']['error'] == 0) {
-        		echo "File $filename was successfully uploaded!! <br/><br/>";
+        		echo "File <span style='color:#ffa500'><i>'$filename'</i></span> has been successfully uploaded!! <br/><br/>";
         		echo "<b><u>Details : </u></b><br/>";
-        		echo "Doc Title : $title <br/><br/>";
-        		echo "File Name : ".$_FILES['docFile']['name']."<br.>"."<br/>";
-        		echo "File Size : ".$_FILES['docFile']['size']." bytes"."<br/>";
-        		echo "File location : upload/".$_FILES['docFile']['name']."<br/>";
+        		echo "<span style='color:#ffa500'>Doc Title</span> : $title <br/><br/>";
+        		echo "<span style='color:#ffa500'>File Name</span> : ".$_FILES['docFile']['name']."<br.>"."<br/>";
+        		echo "<span style='color:#ffa500'>File Size</span> : ".$_FILES['docFile']['size']." bytes"."<br/>";
+        		echo "<span style='color:#ffa500'>File location</span> : upload/".$_FILES['docFile']['name']."<br/>";
     		}
 
             // /*  NOW WE INSERT INTO THE DATABASE  */

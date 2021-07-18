@@ -37,7 +37,7 @@
             </div>
         </header>
 
-        <form class="sortable" style="width:70%" method="post"	enctype="multipart/form-data" id="guiForm" >
+        <form class="sortable" style="width:70%;height:474px" method="post"	enctype="multipart/form-data" id="guiForm" >
             <div class="writetitle" style="padding:40px">
                 <label for="file" id="fileLabel">File</label>
                 <input type="file" name="docFile" id="docFile" value="sldfbsf" style="font-size:15pt"><br/><br/>
@@ -53,7 +53,7 @@
                 <button class="yelo-header-btn" type="button" id="submitBtn" name="submit" value="Submit" style="font-size:15pt">Submit</button> &nbsp;&nbsp;
             </div>
         </form>
-        <div class="writetitle" id="results" style="padding:40px">
+        <div class="writetitle" id="results" style="padding:40px;width:70%;margin-left:auto;margin-right:auto;transform:translate(42px,-30px)">
 
         </div>
 
@@ -61,6 +61,34 @@
         <div class="yelo-header-btn" style="position:fixed;left:0;top:300px;height:110px;padding-top:25px;text-align:center;width:95px;line-height:1"
              onclick="window.open('dashboard.html', '_top')">
              <div style="font-size:25pt"><i class="bi bi-arrow-left-circle"></i></div>DASH-<br/>BOARD</div>
+
+<!-- THE MODAL -->
+        <div class="modal" style="position:fixed;width:100%;height:100%">
+			<div class='saveHldr-modal'>
+				<div class='saveOuterCirc-modal'>
+				</div>
+
+				<div class='saveInnerCirc-modal'>
+				</div>
+				<div class='saveTxtHldr-modal'>
+					<span style='background:white;color:yellowgreen;border-radius:5px;padding:3px 10px;'>
+						<b>UPLOADING... </b> <i class="bi bi-cloud-arrow-up-fill"></i></span>
+				</div>
+			</div>
+			</div>
+
+			<div class="leftSaverHldr lse">
+				<div class="leftSaver lse">
+					<span class="lse" style="font-size:14pt;font-family:'arial black'">SAVE NEW ORDER</span>
+				</div>
+			</div>
+
+			<div class="rightSaverHldr rse">
+				<div class="rightSaver rse">
+					<span class="rse" style="font-size:14pt;font-family:'arial black'">SAVE NEW ORDER</span>
+				</div>
+			</div>
+		</div>
         <footer>RobbieTuckerEdits.com 2021</footer>
 
 
