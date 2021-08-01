@@ -361,6 +361,32 @@ font-family: 'Montserrat', sans-serif;
     /* text-align: center; */
 }
 
+@keyframes spin {
+    from {
+		transform:rotate(0deg);
+    }
+    to {
+		transform: rotate(360deg);
+    }
+}
+
+.saveOuterCirc-modal {
+  animation-name: spin;
+  animation-duration: 3000;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+.uploadToCC{
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.uploadToCC:hover{
+    transform: scale(3.2);
+    transition: transform .3s;
+}
 
 .modal{
     top:0;

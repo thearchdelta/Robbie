@@ -322,7 +322,16 @@ $("#submitBtn").click(function(){
 		// TweenMax.to(savedHldr,.1,{y:-100,opacity:0,delay:.7, onComplete:function(){ TweenMax.set(savedHldr,{display:"none"}) }});
 	}
 
-
+    function cloudconvert(){
+    $.ajax({
+        type: "POST",
+        url:  "cloudconvert.php",
+        data: {documentName:"SPATS.doc"},
+        success: function(data) {
+            console.log(data);
+        }
+    });
+    }
 
 /*-----------------SAVE TITLE ORDER----------------*/
 function saveTitleOrder(){
